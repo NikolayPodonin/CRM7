@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05192CB9-7854-4ED9-BFA5-1A812DE221C0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Client</RootNamespace>
+    <AssemblyName>Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPF\CPForms\WindowMainCP.xaml.cs">
+      <DependentUpon>WindowMainCP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\WindowContragents.xaml.cs">
+      <DependentUpon>WindowContragents.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\F.wmf" />
+    <None Include="Resources\F1.wmf" />
+    <None Include="Resources\logo_mini_eg.wmf" />
+    <None Include="Resources\logo_mini_eg1.wmf" />
+    <None Include="Resources\logo_mini_fl.wmf" />
+    <None Include="Resources\logo_mini_fl1.wmf" />
+    <None Include="Resources\logo_mini_hvr.wmf" />
+    <None Include="Resources\logo_mini_hvr1.wmf" />
+    <None Include="Resources\sdfasf.wmf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CRM7.DataModel\CRM7.DataModel.csproj">
+      <Project>{c8a899b3-56bb-4794-b837-62be9941250d}</Project>
+      <Name>CRM7.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRM7.Mapping\CRM7.Mapping.csproj">
+      <Project>{12ffcd7f-1d42-40c9-8796-9760454c58c7}</Project>
+      <Name>CRM7.Mapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRM7.Service\CRM7.Service.csproj">
+      <Project>{e5587ea9-3c8b-4bb2-9113-41cdce57ce52}</Project>
+      <Name>CRM7.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\Tools.csproj">
+      <Project>{241d590a-54c6-49fb-94ad-20df78447ceb}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WPF\CPForms\WindowMainCP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\WindowContragents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\111.png" />
+    <Content Include="Resources\222.png" />
+    <Content Include="Resources\add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\add_man.png" />
+    <Content Include="Resources\arrow_down.png" />
+    <Content Include="Resources\arrow_up.png" />
+    <Content Include="Resources\auma_logo.jpg" />
+    <Content Include="Resources\calculator-2-512.png" />
+    <Content Include="Resources\check-512.png" />
+    <Content Include="Resources\checklist.png" />
+    <Content Include="Resources\clip.png" />
+    <Content Include="Resources\copy.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\download_1.png" />
+    <Content Include="Resources\download_2.png" />
+    <Content Include="Resources\download_3.png" />
+    <Content Include="Resources\edit_pos.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EG.png" />
+    <Content Include="Resources\euro.png" />
+    <Content Include="Resources\excel.png" />
+    <Content Include="Resources\e_actuator.jpg" />
+    <Content Include="Resources\F.png" />
+    <Content Include="Resources\F1.png" />
+    <Content Include="Resources\folder.png" />
+    <Content Include="Resources\h_mini_logo_16.png" />
+    <Content Include="Resources\ic_hot_tub_black_36dp_1x.png" />
+    <Content Include="Resources\ic_perm_data_setting_black_24dp_2x.png" />
+    <Content Include="Resources\info.png" />
+    <Content Include="Resources\invoice.png" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\logo.valves-rus.png" />
+    <Content Include="Resources\logout.png" />
+    <Content Include="Resources\logo_mini_fl.png" />
+    <Content Include="Resources\logo_mini_td.png" />
+    <Content Include="Resources\logo_mini_td1.png" />
+    <Content Include="Resources\mail.png" />
+    <Content Include="Resources\mf_agents.png" />
+    <Content Include="Resources\mf_bill-32.png" />
+    <Content Include="Resources\mf_briefcase-8-32.png" />
+    <Content Include="Resources\mf_check-32.png" />
+    <Content Include="Resources\mf_clipboard-2-32.png" />
+    <Content Include="Resources\mf_conference-32.png" />
+    <Content Include="Resources\mf_contr.png" />
+    <Content Include="Resources\mf_CP.png" />
+    <Content Include="Resources\mf_invoice-32.png" />
+    <Content Include="Resources\mf_invoice.png" />
+    <Content Include="Resources\mf_spec.png" />
+    <Content Include="Resources\mf_store.png" />
+    <Content Include="Resources\new.png" />
+    <Content Include="Resources\ok.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\open.png" />
+    <Content Include="Resources\options.png" />
+    <Content Include="Resources\organizer_32.png" />
+    <Content Include="Resources\Passports.png" />
+    <Content Include="Resources\Passports_32.png" />
+    <Content Include="Resources\paste.png" />
+    <Content Include="Resources\purchase-order-512.png" />
+    <Content Include="Resources\refresh-512.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\server.png" />
+    <Content Include="Resources\settings.png" />
+    <Content Include="Resources\settings_2.png" />
+    <Content Include="Resources\sinchronize-512.png" />
+    <Content Include="Resources\tdf.ico" />
+    <Content Include="Resources\trash.png" />
+    <Content Include="Resources\undo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\users.png" />
+    <Content Include="Resources\word.png" />
+    <Content Include="Resources\Безымянный-1.png" />
+    <Content Include="Resources\Безымянный2.png" />
+    <Content Include="Resources\стрелка.png" />
+    <Content Include="Resources\стрелка1.png" />
+    <Content Include="Resources\стрелка2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

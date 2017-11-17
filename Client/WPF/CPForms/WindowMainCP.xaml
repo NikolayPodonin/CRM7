@@ -1,0 +1,250 @@
+﻿<Window x:Class="Client.WPF.CPForms.WindowMainCP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.WPF.CPForms"
+             xmlns:nudc="http://schemas.xceed.com/wpf/xaml/toolkit"    
+        mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MinHeight="500"  MinWidth="850" Height="575" Width="850">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50*"  MinHeight="250" MaxHeight="350"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FFE5E5E5"></Grid>
+        <TabControl Grid.Row="1" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <TabItem Header="Арматура">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="62*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="65*"/>
+                            <ColumnDefinition Width="85*"/>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="37*"/>
+                            <ColumnDefinition Width="64*"/>
+                            <ColumnDefinition Width="129*"/>
+                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="53*"/>
+                            <ColumnDefinition Width="170*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="71*"/>
+                            <RowDefinition Height="51*"/>
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="lbx_Manufacturer" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Type" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Series" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Connection" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Environment" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_MaterialBody" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Type.Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Consolidation" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_Controlling" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="7" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" >
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Name="tbl_Controlling" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Controlling}" Value="True">
+                                            <Setter TargetName="tbl_Controlling" Property="TextBlock.Text" Value="Регулирующий"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Controlling}" Value="False">
+                                            <Setter TargetName="tbl_Controlling" Property="TextBlock.Text" Value="Запорный"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_DN" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DN}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_PN" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PN}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox x:Name="lbx_RotorType" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <CheckBox x:Name="chb_SOF" Content="КОФ" Grid.Column="4" Grid.Row="1"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="42"/>
+                        <CheckBox x:Name="chb_ClassA" Content="Класс А" Grid.Column="6" Grid.Row="1"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="59"/>
+                        <CheckBox x:Name="chb_TemperatureExt" Content="Темп. расширение" Grid.Column="7" Grid.Row="1"  HorizontalAlignment="Left" Margin="5,2,0,0" VerticalAlignment="Top" Height="16" Width="120"/>
+
+
+
+
+                        <GridSplitter Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
+                        <GridSplitter Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
+                        <GridSplitter Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
+                        <GridSplitter Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" />
+                        <GridSplitter Grid.Column="4" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" />
+                        <GridSplitter Grid.Column="5" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" />
+                        <GridSplitter Grid.Column="6" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" />
+                        <GridSplitter Grid.Column="7" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" />
+                        <GridSplitter Grid.Column="8" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
+                        <GridSplitter Grid.Column="9" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
+
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65*"></ColumnDefinition>
+                                <ColumnDefinition Width="151*"></ColumnDefinition>
+                                <ColumnDefinition Width="108*"></ColumnDefinition>
+                                <ColumnDefinition Width="108*"></ColumnDefinition>
+                                <ColumnDefinition Width="108*"></ColumnDefinition>
+                                <ColumnDefinition Width="107*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31*"></RowDefinition>
+                                <RowDefinition Height="32*"></RowDefinition>
+                                <RowDefinition Height="36*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <CheckBox x:Name="chb_OtherRotor" Content="Другой" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="57"/>
+                            <TextBox x:Name="tbx_OtherRotor" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="19"/>
+                            <Button x:Name="but_RotorOption" Content="Опции привода" Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="19" />
+                            <ListBox x:Name="lbx_Rotors" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                            <ListBox x:Name="lbx_SOFs" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2"/>
+
+                            <TextBlock x:Name="tbl_ValvePrice" Grid.Column="4" Grid.Row="0" Text="Арматура" TextAlignment="Left" />
+                            <TextBlock x:Name="tbl_SOFPrice" Grid.Column="4" Grid.Row="1" Text="Фланцы" TextAlignment="Left" />
+                            <TextBlock x:Name="tbl_RotorPrice" Grid.Column="4" Grid.Row="2" Text="Ротор" TextAlignment="Left" />
+                            <nudc:DecimalUpDown x:Name="dud_ValvePrice" DataContext="{Binding ElementName=lbx_PN, Path=SelectedItem.Price}"  Margin="0,2,5,2" Grid.Column="5" Grid.Row="0" />
+                            <nudc:DecimalUpDown x:Name="dud_SOFPrice" Margin="0,2,5,2" Grid.Column="5" Grid.Row="1" />
+                            <nudc:DecimalUpDown x:Name="dud_RotorPrice" Margin="0,2,5,2" Grid.Column="5" Grid.Row="2" />
+
+                        </Grid>
+                        <Grid x:Name="PositionButtons" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="17*"></RowDefinition>
+                                <RowDefinition Height="18*"></RowDefinition>
+                                <RowDefinition Height="64*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="but_EditPosition" Grid.Row="2" HorizontalAlignment="Left" Margin="2,0,0,2" VerticalAlignment="Bottom" Height="40" Width="40" >
+                                <StackPanel>
+                                    <Image Source="/Resources/edit_pos.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_Undo" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="2,0,0,2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/undo.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_OK" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Margin="2,0,0,2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/ok.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_AddPosition" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" Margin="2,0,0,2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/add.png" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Произвольная">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <TextBox x:Name="tbx_Definition" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch"/>
+        <DataGrid x:Name="dgr_Positions" AutoGenerateColumns="False" Grid.Row="3" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding Path=PositionNumber}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Amount}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Цена, руб."></DataGridTextColumn>
+                <DataGridTextColumn Header="Сумма, руб."></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="4" Background="#FFE5E5E5">
+
+        </Grid>
+    </Grid>
+</Window>
