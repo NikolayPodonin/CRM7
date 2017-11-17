@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8A899B3-56BB-4794-B837-62BE9941250D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM7.DataModel</RootNamespace>
+    <AssemblyName>CRM7.DataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Catalog\Catalog.cs" />
+    <Compile Include="Catalog\CatalogPosition\ICatalogPosition.cs" />
+    <Compile Include="Catalog\CatalogPosition\ManualProductInCatalog.cs" />
+    <Compile Include="Catalog\CatalogPosition\RotorInCatalog.cs" />
+    <Compile Include="Catalog\CatalogPosition\RotorOptionInCatalog.cs" />
+    <Compile Include="Catalog\CatalogPosition\SofInCatalog.cs" />
+    <Compile Include="Catalog\CatalogPosition\ValveInCatalog.cs" />
+    <Compile Include="Commercial\CPOption.cs" />
+    <Compile Include="Commercial\ProposalPosition\ManualProductInPosition.cs" />
+    <Compile Include="Commercial\ProposalPosition\IProductInPosition.cs" />
+    <Compile Include="Commercial\Proposal.cs" />
+    <Compile Include="Commercial\ProposalPosition\ProposalPosition.cs" />
+    <Compile Include="Commercial\ProposalPosition\RotorInPosition.cs" />
+    <Compile Include="Commercial\ProposalPosition\RotorOptionInPosition.cs" />
+    <Compile Include="Commercial\ProposalPosition\SofInPosition.cs" />
+    <Compile Include="Commercial\ProposalPosition\ValveInPosition.cs" />
+    <Compile Include="Commercial\Contract.cs" />
+    <Compile Include="Commercial\Invoice.cs" />
+    <Compile Include="Commercial\Specification.cs" />
+    <Compile Include="Files\File.cs" />
+    <Compile Include="Management\AccessGroup.cs" />
+    <Compile Include="Management\Company.cs" />
+    <Compile Include="Management\CompanyType.cs" />
+    <Compile Include="Management\Contact.cs" />
+    <Compile Include="CurrencyPair.cs" />
+    <Compile Include="IPriceable.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
+    <Compile Include="Localization\LocalizedStrings.cs" />
+    <Compile Include="Management\Facility.cs" />
+    <Compile Include="Management\Post.cs" />
+    <Compile Include="Management\User.cs" />
+    <Compile Include="Organizer\DayReport.cs" />
+    <Compile Include="Organizer\Task.cs" />
+    <Compile Include="Organizer\TaskComment.cs" />
+    <Compile Include="Organizer\TaskReminder.cs" />
+    <Compile Include="Passport\PassportValve.cs" />
+    <Compile Include="Price.cs" />
+    <Compile Include="Product\Consolidation.cs" />
+    <Compile Include="Product\IProductModel.cs" />
+    <Compile Include="Product\ManualProduct\ManualProduct.cs" />
+    <Compile Include="Product\ManualProduct\ManualProductModel.cs" />
+    <Compile Include="Product\Material.cs" />
+    <Compile Include="Product\MaterialType.cs" />
+    <Compile Include="Product\IProduct.cs" />
+    <Compile Include="Product\Rotor\Rotor.cs" />
+    <Compile Include="Product\Rotor\RotorOption.cs" />
+    <Compile Include="Product\Rotor\RotorOptionDismatch.cs" />
+    <Compile Include="Product\Rotor\RotorType.cs" />
+    <Compile Include="Product\Rotor\_ElectricActuator\EAOption.cs" />
+    <Compile Include="Product\Rotor\_ElectricActuator\EAOptionModel.cs" />
+    <Compile Include="Product\Rotor\_ElectricActuator\ElectricActuator.cs" />
+    <Compile Include="Product\Rotor\_ElectricActuator\ElectricActuatorModel.cs" />
+    <Compile Include="Product\Rotor\RotorModel.cs" />
+    <Compile Include="Product\Rotor\_ManualGear\ManualGear.cs" />
+    <Compile Include="Product\Rotor\_ManualGear\ManualGearModel.cs" />
+    <Compile Include="Product\Rotor\_PneumaticActuator\PAOption.cs" />
+    <Compile Include="Product\Rotor\_PneumaticActuator\PAOptionModel.cs" />
+    <Compile Include="Product\Rotor\_PneumaticActuator\PneumaticActuator.cs" />
+    <Compile Include="Product\Rotor\_PneumaticActuator\PneumaticActuatorModel.cs" />
+    <Compile Include="Product\Rotor\RotorOptionModel.cs" />
+    <Compile Include="Product\SOF\SOF.cs" />
+    <Compile Include="Product\SOF\SofModel.cs" />
+    <Compile Include="Product\Valve\Valve.cs" />
+    <Compile Include="Product\Valve\ValveConnection.cs" />
+    <Compile Include="Product\Environment.cs" />
+    <Compile Include="Product\Valve\ValveModel.cs" />
+    <Compile Include="Product\Valve\ValveRotorDismatch.cs" />
+    <Compile Include="Product\Valve\ValveSeries.cs" />
+    <Compile Include="Product\Valve\ValveSofDismatch.cs" />
+    <Compile Include="Product\Valve\ValveType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Storage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LocalizedStrings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
