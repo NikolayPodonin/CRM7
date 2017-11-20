@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace CRM7.Service
 {
+    // будет переписываться под стандарт, заданный в ProductModels
     public partial class Management
     {
         #region Company

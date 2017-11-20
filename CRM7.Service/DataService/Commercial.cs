@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CRM7.Service
 {
+    // будет переписываться под стандарт, заданный в ProductModels
     public class Commercial
     {     
 

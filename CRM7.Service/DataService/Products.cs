@@ -10,6 +10,7 @@ using System.ServiceModel;
 
 namespace CRM7.Service
 {
+    // будет переписываться под стандарт, заданный в ProductModels
     public partial class Products
     {
 

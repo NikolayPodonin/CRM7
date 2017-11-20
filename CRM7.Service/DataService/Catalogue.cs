@@ -14,10 +14,9 @@ using System.ServiceModel;
 
 namespace CRM7.Service
 {
-    //Прототип класса с прототипами функций
+    // будет дописываться
     public class Catalogue
     {
-
         /// <summary>
         /// Добавить каталог.
         /// </summary>
@@ -72,9 +71,7 @@ namespace CRM7.Service
                 throw new Exception(LocalizedStrings.Catalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
-
-
-
+        
         /// <summary>
         /// Получить все каталоги.
         /// </summary>        

@@ -42,7 +42,8 @@ namespace Client.WPF.CPForms
             //Здесь мы обращаемся на сервер каждый раз, чтобы получить характеристики моделей арматуры, которые отобразятся в окне.
             lbx_Manufacturer.SelectionChanged += (s, e) =>
             {
-                foreach( var valveType in cat.GetValveTypesOfManufacturerInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id))
+                lbx_Type.Items.Clear();
+                foreach ( var valveType in cat.GetValveTypesOfManufacturerInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id))
                 {
                     lbx_Type.Items.Add(valveType);
                 }
@@ -50,6 +51,7 @@ namespace Client.WPF.CPForms
             };
             lbx_Type.SelectionChanged += (s, e) =>
             {
+                lbx_Series.Items.Clear();
                 foreach (var series in cat.GetValveSeriesOfTypeInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id, ((ValveType)lbx_Type.SelectedItem).Id))
                 {
                     lbx_Series.Items.Add(series);
@@ -58,6 +60,7 @@ namespace Client.WPF.CPForms
             };
             lbx_Series.SelectionChanged += (s, e) =>
             {
+                lbx_Connection.Items.Clear();
                 foreach (var connect in cat.GetValveConnectionOfSeriesInCatalog(catalog.Id, 
                     ((Company)lbx_Manufacturer.SelectedItem).Id, 
                     ((ValveType)lbx_Type.SelectedItem).Id, 
@@ -69,6 +72,7 @@ namespace Client.WPF.CPForms
             };
             lbx_Connection.SelectionChanged += (s, e) =>
             {
+                lbx_Environment.Items.Clear();
                 foreach (var envir in cat.GetValveEnvironmentOfConnectionInCatalog(catalog.Id,
                     ((Company)lbx_Manufacturer.SelectedItem).Id,
                     ((ValveType)lbx_Type.SelectedItem).Id,
@@ -81,6 +85,7 @@ namespace Client.WPF.CPForms
             };
             lbx_Environment.SelectionChanged += (s, e) =>
             {
+                lbx_MaterialBody.Items.Clear();
                 foreach (var mb in cat.GetValveMaterialBodyOfEnvironmentInCatalog(catalog.Id,
                     ((Company)lbx_Manufacturer.SelectedItem).Id,
                     ((ValveType)lbx_Type.SelectedItem).Id,
@@ -94,6 +99,7 @@ namespace Client.WPF.CPForms
             };
             lbx_MaterialBody.SelectionChanged += (s, e) =>
             {
+                lbx_Consolidation.Items.Clear();
                 foreach (var mb in cat.GetValveConsolidationOfMaterialInCatalog(catalog.Id,
                     ((Company)lbx_Manufacturer.SelectedItem).Id,
                     ((ValveType)lbx_Type.SelectedItem).Id,
@@ -109,6 +115,7 @@ namespace Client.WPF.CPForms
             //Здесь мы уже получаем не характеристики, а сами модели арматуры.
             lbx_Consolidation.SelectionChanged += (s, e) =>
             {
+                lbx_Controlling.Items.Clear();
                 foreach (var vm in cat.GetValveModelsOfConsolidationInCatalog(catalog.Id,
                     ((Company)lbx_Manufacturer.SelectedItem).Id,
                     ((ValveType)lbx_Type.SelectedItem).Id,
@@ -126,6 +133,7 @@ namespace Client.WPF.CPForms
             // Дальше к элементам окна привязываются уже не характеристики арматуры, а сохраненные в клиенте модели арматуры, но отображаются только их характеристики.
             lbx_Controlling.SelectionChanged += (s, e) =>
             {
+                lbx_DN.Items.Clear();
                 foreach (var vm in valveModels.Where(i => i.Controlling == ((ValveModel)lbx_Controlling.SelectedItem).Controlling).GroupBy(i => i.DN).Select(gr => gr.First()))
                 {
                     lbx_DN.Items.Add(vm);
@@ -134,6 +142,7 @@ namespace Client.WPF.CPForms
             };
             lbx_DN.SelectionChanged += (s, e) =>
             {
+                lbx_PN.Items.Clear();
                 foreach (var vm in valveModels.Where(i => i.DN == ((ValveModel)lbx_DN.SelectedItem).DN).GroupBy(i => i.PN).Select(gr => gr.First()))
                 {
                     lbx_PN.Items.Add(vm);
@@ -143,6 +152,7 @@ namespace Client.WPF.CPForms
             // Отсюда начинаются другие элементы, модель арматуры мы уже выбрали.
             lbx_PN.SelectionChanged += (s, e) =>
             {
+                lbx_RotorType.Items.Clear();
                 foreach (var rt in valveModels.First(i => i.PN == ((ValveModel)lbx_PN.SelectedItem).PN).RotorDismatches.Select(rm => rm.RotorModel.Type))
                 {
                     lbx_RotorType.Items.Add(rt);
@@ -151,8 +161,9 @@ namespace Client.WPF.CPForms
             };
             lbx_RotorType.SelectionChanged += (s, e) =>
             {
+                lbx_Rotors.Items.Clear();
                 //условие надо будет изменить на не содержащее строковых сравнений. 
-                if(((RotorType)lbx_RotorType.SelectedItem).Name != "Голый шток" && ((RotorType)lbx_RotorType.SelectedItem).Name != "Ручной рычаг")
+                if (((RotorType)lbx_RotorType.SelectedItem).Name != "Голый шток" && ((RotorType)lbx_RotorType.SelectedItem).Name != "Ручной рычаг")
                 {
                     lbx_Rotors.IsEnabled = true;
                     foreach(var rm in ((ValveModel)lbx_PN.SelectedItem).RotorDismatches.Select(rd => rd.RotorModel).Where(rm => rm.TypeId == ((RotorType)lbx_RotorType.SelectedItem).Id))
