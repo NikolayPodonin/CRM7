@@ -1,4 +1,5 @@
-﻿using CRM7.DataModel.Product.Valve;
+﻿using CRM7.DataModel.Product.Rotor;
+using CRM7.DataModel.Product.Valve;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,6 +37,13 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         /// Каталог, где содержится данная позиция.
         /// </summary>
         public virtual Catalog Catalog { get; set; }
+
+        public Guid RotorTypeId { get; set; }
+
+        /// <summary>
+        /// Тип ротора, с которым поставляется арматура.
+        /// </summary>
+        public virtual RotorType RotorType { get; set; }
 
         #region IPriceable
 

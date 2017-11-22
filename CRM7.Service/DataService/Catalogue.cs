@@ -48,8 +48,10 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="valveInCatalog">Позиция арматуры в каталоге.</param>
         /// <param name="catalogId">Id каталога.</param>
+        /// <param name="valveModelId">Id модели арматуры.</param>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
         /// <returns>Добавленная в каталог позиция.</returns>
-        public ValveInCatalog AddValveInCatalog(ValveInCatalog valveInCatalog, Guid catalogId, Guid valveModelId)
+        public ValveInCatalog AddValveInCatalog(ValveInCatalog valveInCatalog, Guid catalogId, Guid valveModelId , Guid rotorTypeId)
         {
             try
             {
@@ -61,6 +63,7 @@ namespace CRM7.Service
                 }
                 valveInCatalog.Catalog = context.Catalogs.Find(catalogId);
                 valveInCatalog.ValveModel = context.ValveModels.Find(valveModelId);
+                valveInCatalog.RotorType = context.RotorTypes.Find(rotorTypeId);
                 valveInCatalog = context.ValveInCatalogs.Add(valveInCatalog);
                 context.SaveChanges();
                 return valveInCatalog;
@@ -68,10 +71,70 @@ namespace CRM7.Service
             catch (Exception e)
             {
                 Diagnostic.WriteMessage(e.Message);
-                throw new Exception(LocalizedStrings.Catalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+                throw new Exception(LocalizedStrings.ValveInCatalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
-        
+
+        /// <summary>
+        /// Добавить позицию ротора в каталог.
+        /// </summary>
+        /// <param name="rotorInCatalog">Позиция ротора.</param>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="rotorModelId">Id модели ротора.</param>
+        /// <returns></returns>
+        public RotorInCatalog AddRotorInCatalog(RotorInCatalog rotorInCatalog, Guid catalogId, Guid rotorModelId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+
+                if (context.RotorInCatalogs.Where(i => i.Id == rotorInCatalog.Id).Count() > 0)
+                {
+                    return rotorInCatalog;
+                }
+                rotorInCatalog.Catalog = context.Catalogs.Find(catalogId);
+                rotorInCatalog.RotorModel = context.RotorModels.Find(rotorModelId);
+                rotorInCatalog = context.RotorInCatalogs.Add(rotorInCatalog);
+                context.SaveChanges();
+                return rotorInCatalog;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorInCatalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Добавить позицию фланцев в каталог.
+        /// </summary>
+        /// <param name="sofInCatalog">Позиция ротора.</param>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="sofModelId">Id модели фланцев.</param>
+        /// <returns></returns>
+        public SofInCatalog AddSofInCatalog(SofInCatalog sofInCatalog, Guid catalogId, Guid sofModelId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+
+                if (context.SofInCatalogs.Where(i => i.Id == sofInCatalog.Id).Count() > 0)
+                {
+                    return sofInCatalog;
+                }
+                sofInCatalog.Catalog = context.Catalogs.Find(catalogId);
+                sofInCatalog.SofModel = context.SofModels.Find(sofModelId);
+                sofInCatalog = context.SofInCatalogs.Add(sofInCatalog);
+                context.SaveChanges();
+                return sofInCatalog;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.SofInCatalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
         /// <summary>
         /// Получить все каталоги.
         /// </summary>        
@@ -94,7 +157,7 @@ namespace CRM7.Service
         #region GetValveProperties
 
         /// <summary>
-        /// Получить названия всех производителей арматуры.
+        /// Получить всех производителей арматуры.
         /// </summary>
         /// <param name="catalogId">Id каталога.</param>
         /// <returns>Список названий производителей арматуры.</returns>
@@ -275,7 +338,7 @@ namespace CRM7.Service
         }
 
         /// <summary>
-        /// Получить все модели арматуры одного типа уплотнения, одного материала корпуса, одной среды, 
+        /// Получить все возможные виды регулирования одного типа уплотнения, одного материала корпуса, одной среды, 
         /// одного типы присоединения, одной серии, одного типа, от производителя в каталоге.
         /// </summary>
         /// <param name="catalogId">Id каталога.</param>
@@ -284,9 +347,10 @@ namespace CRM7.Service
         /// <param name="seriesId">Id серии арматуры.</param>
         /// <param name="connectionId">Id типа соединения арматуры.</param>
         /// <param name="environmentId">Id среды.</param>
+        /// <param name="materialId">Id материала корпуса.</param>
         /// <param name="consolidationId">Id типа уплотнения.</param>
-        /// <returns>Модели арматуры.</returns>
-        public List<ValveModel> GetValveModelsOfConsolidationInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId, 
+        /// <returns>Виды регулирования (запорная/регулирующая).</returns>
+        public List<bool> GetControllingOfConsolidationInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId, 
                                                                         Guid seriesId, Guid connectionId, Guid environmentId, 
                                                                         Guid materialId, Guid consolidationId)
         {
@@ -299,12 +363,233 @@ namespace CRM7.Service
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
                             && i.ConsolidationId == consolidationId).ToList();
-                return vm;
+                return vm.Select(v => v.Controlling).Distinct().ToList();
             }
             catch (Exception e)
             {
                 Diagnostic.WriteMessage(e.Message);
-                throw new Exception(LocalizedStrings.Consolidations + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+                throw new Exception(LocalizedStrings.Controlling + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все возможные диаметры одного вида регулирования одного типа уплотнения, одного материала корпуса, одной среды, 
+        /// одного типы присоединения, одной серии, одного типа, от производителя в каталоге.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="manufacturerId">Id производителя.</param>
+        /// <param name="typeId">Id типа арматуры.</param>
+        /// <param name="seriesId">Id серии арматуры.</param>
+        /// <param name="connectionId">Id типа соединения арматуры.</param>
+        /// <param name="environmentId">Id среды.</param>
+        /// <param name="materialId">Id материала корпуса.</param>
+        /// <param name="consolidationId">Id типа уплотнения.</param>
+        /// <param name="controlling">Запорная/регулирующая</param>
+        /// <returns>Диаметры.</returns>
+        public List<string> GetDiametersOfControllingInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId,
+                                                                        Guid seriesId, Guid connectionId, Guid environmentId,
+                                                                        Guid materialId, Guid consolidationId, bool controlling)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                    .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
+                            && i.SeriesId == seriesId && i.ConnectionId == connectionId
+                            && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
+                            && i.ConsolidationId == consolidationId && i.Controlling == controlling).ToList();
+                return vm.Select(v => v.DN).Distinct().ToList();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.DNs + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все возможные давления одного димаетра одного вида регулирования одного типа уплотнения, одного материала корпуса, одной среды, 
+        /// одного типы присоединения, одной серии, одного типа, от производителя в каталоге.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="manufacturerId">Id производителя.</param>
+        /// <param name="typeId">Id типа арматуры.</param>
+        /// <param name="seriesId">Id серии арматуры.</param>
+        /// <param name="connectionId">Id типа соединения арматуры.</param>
+        /// <param name="environmentId">Id среды.</param>
+        /// <param name="materialId">Id материала корпуса.</param>
+        /// <param name="consolidationId">Id типа уплотнения.</param>
+        /// <param name="controlling">Запорная/регулирующая</param>
+        /// <param name="DN">Диаметр</param>
+        /// <returns>Давления.</returns>
+        public List<double> GetPNsOfDiameterInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId,
+                                                                        Guid seriesId, Guid connectionId, Guid environmentId,
+                                                                        Guid materialId, Guid consolidationId, bool controlling,
+                                                                        string DN)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                    .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
+                            && i.SeriesId == seriesId && i.ConnectionId == connectionId
+                            && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
+                            && i.ConsolidationId == consolidationId && i.Controlling == controlling
+                            && i.DN == DN).ToList();
+                return vm.Select(v => v.PN).Distinct().ToList();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.PNs + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все роторы одного типа в каталоге, которые можно поставить на модель арматуры.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="manufacturerId">Id производителя.</param>
+        /// <param name="typeId">Id типа арматуры.</param>
+        /// <param name="seriesId">Id серии арматуры.</param>
+        /// <param name="connectionId">Id типа соединения арматуры.</param>
+        /// <param name="environmentId">Id среды.</param>
+        /// <param name="materialId">Id материала корпуса.</param>
+        /// <param name="consolidationId">Id типа уплотнения.</param>
+        /// <param name="controlling">Запорная/регулирующая</param>
+        /// <param name="DN">Диаметр</param>
+        /// <param name="PN">Давление.</param>
+        /// <returns>Типы роторов.</returns>
+        public List<RotorType> GetRotorTypesOfPNInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId,
+                                                                        Guid seriesId, Guid connectionId, Guid environmentId,
+                                                                        Guid materialId, Guid consolidationId, bool controlling,
+                                                                        string DN, double PN)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                List<ValveInCatalog> vc = cat.Valves.Where(i => i.ValveModel.ManufacturerId == manufacturerId && i.ValveModel.TypeId == typeId
+                            && i.ValveModel.SeriesId == seriesId && i.ValveModel.ConnectionId == connectionId
+                            && i.ValveModel.EnvironmentId == environmentId && i.ValveModel.BodyMaterialId == materialId
+                            && i.ValveModel.ConsolidationId == consolidationId && i.ValveModel.Controlling == controlling
+                            && i.ValveModel.DN == DN && i.ValveModel.PN == PN).ToList();
+                return vc.Select(v => v.RotorType).Distinct().ToList();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorTypes + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить позицию арматуры в каталоге.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="manufacturerId">Id производителя.</param>
+        /// <param name="typeId">Id типа арматуры.</param>
+        /// <param name="seriesId">Id серии арматуры.</param>
+        /// <param name="connectionId">Id типа соединения арматуры.</param>
+        /// <param name="environmentId">Id среды.</param>
+        /// <param name="materialId">Id материала корпуса.</param>
+        /// <param name="consolidationId">Id типа уплотнения.</param>
+        /// <param name="controlling">Запорная/регулирующая</param>
+        /// <param name="DN">Диаметр</param>
+        /// <param name="PN">Давление.</param>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
+        /// <returns>Роторы.</returns>
+        public ValveInCatalog GetValveInCatalog(Guid catalogId, Guid manufacturerId, Guid typeId,
+                                                                        Guid seriesId, Guid connectionId, Guid environmentId,
+                                                                        Guid materialId, Guid consolidationId, bool controlling,
+                                                                        string DN, double PN, Guid rotorTypeId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                ValveInCatalog vc = cat.Valves.Where(i => i.ValveModel.ManufacturerId == manufacturerId && i.ValveModel.TypeId == typeId
+                            && i.ValveModel.SeriesId == seriesId && i.ValveModel.ConnectionId == connectionId
+                            && i.ValveModel.EnvironmentId == environmentId && i.ValveModel.BodyMaterialId == materialId
+                            && i.ValveModel.ConsolidationId == consolidationId && i.ValveModel.Controlling == controlling
+                            && i.ValveModel.DN == DN && i.ValveModel.PN == PN).Single(rm => rm.RotorTypeId == rotorTypeId);
+                return vc;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ValveInCatalog + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+                
+
+        /// <summary>
+        /// Получить все модели роторов для модели арматуры в каталоге.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="valveInCatalogId">Id арматуры в каталоге.</param>
+        /// <returns>Роторы.</returns>
+        public List<RotorInCatalog> GetRotorsForValveInCatalog(Guid catalogId, Guid valveInCatalogId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                ValveInCatalog vc = cat.Valves.Single(i => i.Id == valveInCatalogId);
+                List<RotorModel> rms = vc.ValveModel.RotorDismatches.Select(rd => rd.RotorModel).Where(rm => rm.TypeId == vc.RotorTypeId).ToList();
+                List<RotorInCatalog> result = new List<RotorInCatalog>();
+                foreach (var ric in cat.Rotors)
+                {
+                    foreach(var rotm in rms)
+                    {
+                        if(ric.RotorModelId == rotm.Id)
+                        {
+                            result.Add(ric); 
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorInCatalog + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все фланцы для модели арматуры в каталоге.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <param name="valveInCatalogId">Id арматуры в каталоге.</param>
+        /// <returns>Роторы.</returns>
+        public List<SofInCatalog> GetSofsForValveInCatalog(Guid catalogId, Guid valveInCatalogId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Catalog cat = context.Catalogs.Find(catalogId);
+                ValveInCatalog vc = cat.Valves.Single(i => i.Id == valveInCatalogId);
+                List<SofModel> sms = vc.ValveModel.SofDismatches.Select(sd => sd.SofModel).ToList();
+                List<SofInCatalog> result = new List<SofInCatalog>();
+                foreach (var sic in cat.SOFs)
+                {
+                    foreach (var sofm in sms)
+                    {
+                        if (sic.SofModelId == sofm.Id)
+                        {
+                            result.Add(sic);
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.SofInCatalog + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
             }
         }
 

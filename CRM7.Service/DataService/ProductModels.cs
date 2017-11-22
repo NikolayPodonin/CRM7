@@ -450,6 +450,34 @@ namespace CRM7.Service
             }
         }
 
+        /// <summary>
+        /// Добавить соответствие между моделями арматуры и фланцев.
+        /// </summary>
+        /// <returns></returns>
+        public ValveSofDismatch AddValveSofDismatch(Guid valveModelId, Guid sofModelId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                if (context.ValveSofDismatches.Where(i => i.ValveModelId == valveModelId && i.SofModelId == sofModelId).Count() > 0)
+                {
+                    return context.ValveSofDismatches.Where(i => i.ValveModelId == valveModelId && i.SofModelId == sofModelId).First();
+                }
+                ValveSofDismatch vrd = new ValveSofDismatch();
+                vrd.ValveModel = context.ValveModels.Find(valveModelId);
+                vrd.SofModel = context.SofModels.Find(sofModelId);
+                vrd = context.ValveSofDismatches.Add(vrd);
+                context.SaveChanges();
+                return vrd;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ValveSofDismatch + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+
         #endregion
 
         #region Get statement

@@ -15,6 +15,7 @@
             <RowDefinition Height="40*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+
         <Grid Grid.Row="0" Background="#FFE5E5E5"></Grid>
         <TabControl Grid.Row="1" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <TabItem Header="Арматура">
@@ -24,7 +25,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Background="#FFE5E5E5">
+                    <Grid x:Name="grid_ValveTopHalf" Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="62*"/>
                             <ColumnDefinition Width="50*"/>
@@ -96,10 +97,10 @@
                                 <DataTemplate>
                                     <TextBlock Name="tbl_Controlling" />
                                     <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Controlling}" Value="True">
+                                        <DataTrigger Binding="{Binding}" Value="True">
                                             <Setter TargetName="tbl_Controlling" Property="TextBlock.Text" Value="Регулирующий"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding Controlling}" Value="False">
+                                        <DataTrigger Binding="{Binding}" Value="False">
                                             <Setter TargetName="tbl_Controlling" Property="TextBlock.Text" Value="Запорный"/>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
@@ -109,14 +110,14 @@
                         <ListBox x:Name="lbx_DN" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding DN}"/>
+                                    <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox x:Name="lbx_PN" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PN}"/>
+                                    <TextBlock Text="{Binding}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -127,12 +128,18 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <CheckBox x:Name="chb_SOF" Content="КОФ" Grid.Column="4" Grid.Row="1"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="42"/>
-                        <CheckBox x:Name="chb_ClassA" Content="Класс А" Grid.Column="6" Grid.Row="1"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="59"/>
-                        <CheckBox x:Name="chb_TemperatureExt" Content="Темп. расширение" Grid.Column="7" Grid.Row="1"  HorizontalAlignment="Left" Margin="5,2,0,0" VerticalAlignment="Top" Height="16" Width="120"/>
 
+                        <Grid x:Name="grid_CheckBoxContainer" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="61*"></ColumnDefinition>
+                                <ColumnDefinition Width="81*"></ColumnDefinition>
+                                <ColumnDefinition Width="138*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-
+                            <CheckBox x:Name="chb_SOF" Content="КОФ" Grid.Column="0" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="42" />
+                            <CheckBox x:Name="chb_ClassA" Content="Класс А" Grid.Column="1" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="59" />
+                            <CheckBox x:Name="chb_TemperatureExt" Content="Темп. расширение" Grid.Column="2" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="120" />
+                        </Grid>
 
                         <GridSplitter Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
                         <GridSplitter Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="CurrentAndNext" Width="2" Grid.RowSpan="2"/>
@@ -149,48 +156,67 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="1" Background="#FFE5E5E5">
+                    <Grid x:Name="grid_ValveBottomHalf" Grid.Row="1" Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                             <ColumnDefinition Width="2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid x:Name="grid_RotorsAndSOF" Grid.Row="0" Grid.Column="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="65*"></ColumnDefinition>
                                 <ColumnDefinition Width="151*"></ColumnDefinition>
                                 <ColumnDefinition Width="108*"></ColumnDefinition>
                                 <ColumnDefinition Width="108*"></ColumnDefinition>
-                                <ColumnDefinition Width="108*"></ColumnDefinition>
-                                <ColumnDefinition Width="107*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="31*"></RowDefinition>
-                                <RowDefinition Height="32*"></RowDefinition>
-                                <RowDefinition Height="36*"></RowDefinition>
+                                <RowDefinition Height="27*"></RowDefinition>
+                                <RowDefinition Height="43*"></RowDefinition>
+                                <RowDefinition Height="40*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <CheckBox x:Name="chb_OtherRotor" Content="Другой" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="16" Width="57"/>
-                            <TextBox x:Name="tbx_OtherRotor" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="19"/>
-                            <Button x:Name="but_RotorOption" Content="Опции привода" Grid.Column="2" Grid.Row="0"  HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="19" />
-                            <ListBox x:Name="lbx_Rotors" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                            <CheckBox x:Name="chb_OtherRotor" Content="Другой" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Margin="2,5,0,0" VerticalAlignment="Top" Height="16" Width="57" IsEnabled="False"/>
+                            <TextBox x:Name="tbx_OtherRotor" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="22" IsEnabled="False"/>
+                            <Button x:Name="but_RotorOption" Content="Опции привода" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" Margin="2,2,2,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="but_RotorOption_Click" />
+                            <ListBox x:Name="lbx_Rotors" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2" Grid.ColumnSpan="3" IsEnabled="False">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding RotorModel.Name}"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
-                            <ListBox x:Name="lbx_SOFs" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="2"/>
-
-                            <TextBlock x:Name="tbl_ValvePrice" Grid.Column="4" Grid.Row="0" Text="Арматура" TextAlignment="Left" />
-                            <TextBlock x:Name="tbl_SOFPrice" Grid.Column="4" Grid.Row="1" Text="Фланцы" TextAlignment="Left" />
-                            <TextBlock x:Name="tbl_RotorPrice" Grid.Column="4" Grid.Row="2" Text="Ротор" TextAlignment="Left" />
-                            <nudc:DecimalUpDown x:Name="dud_ValvePrice" DataContext="{Binding ElementName=lbx_PN, Path=SelectedItem.Price}"  Margin="0,2,5,2" Grid.Column="5" Grid.Row="0" />
-                            <nudc:DecimalUpDown x:Name="dud_SOFPrice" Margin="0,2,5,2" Grid.Column="5" Grid.Row="1" />
-                            <nudc:DecimalUpDown x:Name="dud_RotorPrice" Margin="0,2,5,2" Grid.Column="5" Grid.Row="2" />
+                            <ListBox x:Name="lbx_SOFs" SelectionMode="Single" ItemsSource="{Binding}" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2" Grid.RowSpan="3" IsEnabled="False">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding SofModel.Name}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
 
                         </Grid>
-                        <Grid x:Name="PositionButtons" Grid.Column="1">
+
+                        <Grid x:Name="gridPositionPrices" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="71*"></ColumnDefinition>
+                                <ColumnDefinition Width="114*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock x:Name="tbl_ValvePrice" Grid.Column="0" Grid.Row="0" Text="Арматура" TextAlignment="Right" VerticalAlignment="Center" Height="16" Margin="0,10,0,11" />
+                            <TextBlock x:Name="tbl_SOFPrice" Grid.Column="0" Grid.Row="1" Text="Фланцы" TextAlignment="Right" VerticalAlignment="Center" Height="16" Margin="0,10" />
+                            <TextBlock x:Name="tbl_RotorPrice" Grid.Column="0" Grid.Row="2" Text="Ротор" TextAlignment="Right" VerticalAlignment="Center" Height="16" Margin="0,11,0,10" />
+                            <nudc:DecimalUpDown x:Name="dud_ValvePrice" Value="{Binding Price.BaseValue}" DataContext="{Binding}"  Margin="5" Grid.Column="1" Grid.Row="0" />
+                            <nudc:DecimalUpDown x:Name="dud_SOFPrice" Value="{Binding Price.BaseValue}" DataContext="{Binding}" Margin="5" Grid.Column="1" Grid.Row="1" />
+                            <nudc:DecimalUpDown x:Name="dud_RotorPrice" Value="{Binding Price.BaseValue}" DataContext="{Binding}" Margin="5" Grid.Column="1" Grid.Row="2" />
+
+                        </Grid>
+
+                        <Grid x:Name="grid_PositionButtons" Grid.Column="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
@@ -234,10 +260,10 @@
             </TabItem>
         </TabControl>
         <TextBox x:Name="tbx_Definition" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch"/>
-        <DataGrid x:Name="dgr_Positions" AutoGenerateColumns="False" Grid.Row="3" >
+        <DataGrid x:Name="dgr_Positions" DataContext="{Binding}" AutoGenerateColumns="False" Grid.Row="3" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Path=PositionNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=ShortDesignation}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Amount}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Цена, руб."></DataGridTextColumn>
                 <DataGridTextColumn Header="Сумма, руб."></DataGridTextColumn>

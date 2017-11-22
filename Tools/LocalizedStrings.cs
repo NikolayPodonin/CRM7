@@ -121,6 +121,11 @@ namespace CRM7.Tools
         public static readonly string Consolidations = "Типы уплотнения";
 
         /// <summary>
+        /// Тип регулирования.
+        /// </summary>
+        public static readonly string Controlling = "Тип регулирования";
+
+        /// <summary>
         /// Модель арматуры.
         /// </summary>
         public static readonly string ValveModel = "Модель арматуры";
@@ -159,6 +164,26 @@ namespace CRM7.Tools
         /// Типы присоединения арматуры.
         /// </summary>
         public static readonly string ValveConnections = "Типы присоединения арматуры";
+
+        /// <summary>
+        /// Диаметр номинальный.
+        /// </summary>
+        public static readonly string DN = "Диаметр номинальный";
+
+        /// <summary>
+        /// Диаметры номинальные.
+        /// </summary>
+        public static readonly string DNs = "Диаметры номинальные";
+
+        /// <summary>
+        /// Давление номинальное.
+        /// </summary>
+        public static readonly string PN = "Давление номинальное";
+
+        /// <summary>
+        /// Давления номинальные.
+        /// </summary>
+        public static readonly string PNs = "Давления номинальные";
 
         /// <summary>
         /// Модель КОФ.
@@ -233,7 +258,12 @@ namespace CRM7.Tools
         /// <summary>
         /// Соответствие между моделями ротора и арматуры.
         /// </summary>
-        public static string ValveRotorDismatch = "Соответствие между моделями ротора и арматуры";
+        public static readonly string ValveRotorDismatch = "Соответствие между моделями ротора и арматуры";
+
+        /// <summary>
+        /// Соответствие между моделями фланцев и арматуры.
+        /// </summary>
+        public static readonly string ValveSofDismatch = "Соответствие между моделями фланцев и арматуры";
 
         #endregion
 

@@ -1,4 +1,6 @@
 ﻿using CRM7.DataModel.Catalog;
+using CRM7.DataModel.Catalog.CatalogPosition;
+using CRM7.DataModel.Commercial;
 using CRM7.DataModel.Management;
 using CRM7.DataModel.Product;
 using CRM7.DataModel.Product.Rotor;
@@ -28,13 +30,11 @@ namespace Client.WPF.CPForms
     {
         //вместо этого будет шлюз через WCF
         Catalog catalog;
-        List<ValveModel> valveModels;
+        ValveInCatalog valveInCatalog;
 
         public WindowMainCP()
         {
             InitializeComponent();
-
-            valveModels = new List<ValveModel>();
 
             Catalogue cat = new Catalogue();
             catalog = cat.GetAllCatalogs().First();
@@ -129,15 +129,13 @@ namespace Client.WPF.CPForms
                     }
                     lbx_Consolidation.SelectedIndex = 0;
                 }
-            };
-            //Здесь мы уже получаем не характеристики, а сами модели арматуры.
+            };            
             lbx_Consolidation.SelectionChanged += (s, e) =>
             {
                 if (lbx_Consolidation.SelectedItem != null)
                 {
                     lbx_Controlling.Items.Clear();
-                    valveModels.Clear();
-                    foreach (var vm in cat.GetValveModelsOfConsolidationInCatalog(catalog.Id,
+                    foreach (var ctr in cat.GetControllingOfConsolidationInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -146,8 +144,7 @@ namespace Client.WPF.CPForms
                         ((Material)lbx_MaterialBody.SelectedItem).Id,
                         ((Consolidation)lbx_Consolidation.SelectedItem).Id))
                     {
-                        lbx_Controlling.Items.Add(vm);
-                        valveModels.Add(vm);
+                        lbx_Controlling.Items.Add(ctr);
                     }
                     lbx_Controlling.SelectedIndex = 0;
                 }
@@ -158,9 +155,17 @@ namespace Client.WPF.CPForms
                 if(lbx_Controlling.SelectedItem != null)
                 {
                     lbx_DN.Items.Clear();
-                    foreach (var vm in valveModels.Where(i => i.Controlling == ((ValveModel)lbx_Controlling.SelectedItem).Controlling).GroupBy(i => i.DN).Select(gr => gr.First()))
+                    foreach (var dn in cat.GetDiametersOfControllingInCatalog(catalog.Id,
+                        ((Company)lbx_Manufacturer.SelectedItem).Id,
+                        ((ValveType)lbx_Type.SelectedItem).Id,
+                        ((ValveSeries)lbx_Series.SelectedItem).Id,
+                        ((ValveConnection)lbx_Connection.SelectedItem).Id,
+                        ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
+                        ((Material)lbx_MaterialBody.SelectedItem).Id,
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id, 
+                        (bool)lbx_Controlling.SelectedItem))
                     {
-                        lbx_DN.Items.Add(vm);
+                        lbx_DN.Items.Add(dn);
                     }
                     lbx_DN.SelectedIndex = 0;
                 }                
@@ -170,9 +175,18 @@ namespace Client.WPF.CPForms
                 if(lbx_DN.SelectedItem != null)
                 {
                     lbx_PN.Items.Clear();
-                    foreach (var vm in valveModels.Where(i => i.DN == ((ValveModel)lbx_DN.SelectedItem).DN).GroupBy(i => i.PN).Select(gr => gr.First()))
+                    foreach (var pn in cat.GetPNsOfDiameterInCatalog(catalog.Id,
+                        ((Company)lbx_Manufacturer.SelectedItem).Id,
+                        ((ValveType)lbx_Type.SelectedItem).Id,
+                        ((ValveSeries)lbx_Series.SelectedItem).Id,
+                        ((ValveConnection)lbx_Connection.SelectedItem).Id,
+                        ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
+                        ((Material)lbx_MaterialBody.SelectedItem).Id,
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id, 
+                        (bool)lbx_Controlling.SelectedItem,
+                        (string)lbx_DN.SelectedItem))
                     {
-                        lbx_PN.Items.Add(vm);
+                        lbx_PN.Items.Add(pn);
                     }
                     lbx_PN.SelectedIndex = 0;
                 }                
@@ -183,7 +197,17 @@ namespace Client.WPF.CPForms
                 if(lbx_PN.SelectedItem != null)
                 {
                     lbx_RotorType.Items.Clear();
-                    foreach (var rt in valveModels.First(i => i.PN == ((ValveModel)lbx_PN.SelectedItem).PN).RotorDismatches.Select(rm => rm.RotorModel.Type))
+                    foreach (var rt in cat.GetRotorTypesOfPNInCatalog(catalog.Id,
+                        ((Company)lbx_Manufacturer.SelectedItem).Id,
+                        ((ValveType)lbx_Type.SelectedItem).Id,
+                        ((ValveSeries)lbx_Series.SelectedItem).Id,
+                        ((ValveConnection)lbx_Connection.SelectedItem).Id,
+                        ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
+                        ((Material)lbx_MaterialBody.SelectedItem).Id,
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id,
+                        (bool)lbx_Controlling.SelectedItem,
+                        (string)lbx_DN.SelectedItem,
+                        (double)lbx_PN.SelectedItem))
                     {
                         lbx_RotorType.Items.Add(rt);
                     }
@@ -195,11 +219,27 @@ namespace Client.WPF.CPForms
                 if (lbx_RotorType.SelectedItem != null)
                 {
                     lbx_Rotors.Items.Clear();
-                    //условие надо будет изменить на не содержащее строковых сравнений. 
+                    valveInCatalog = cat.GetValveInCatalog(catalog.Id,
+                        ((Company)lbx_Manufacturer.SelectedItem).Id,
+                        ((ValveType)lbx_Type.SelectedItem).Id,
+                        ((ValveSeries)lbx_Series.SelectedItem).Id,
+                        ((ValveConnection)lbx_Connection.SelectedItem).Id,
+                        ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
+                        ((Material)lbx_MaterialBody.SelectedItem).Id,
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id,
+                        (bool)lbx_Controlling.SelectedItem,
+                        (string)lbx_DN.SelectedItem,
+                        (double)lbx_PN.SelectedItem,
+                        ((RotorType)lbx_RotorType.SelectedItem).Id);
+
+                    dud_ValvePrice.DataContext = valveInCatalog;
+
+                    //условие надо будет изменить на не содержащее строковых сравнений.
                     if (((RotorType)lbx_RotorType.SelectedItem).Name != "Голый шток" && ((RotorType)lbx_RotorType.SelectedItem).Name != "Ручной рычаг")
                     {
                         lbx_Rotors.IsEnabled = true;
-                        foreach (var rm in ((ValveModel)lbx_PN.SelectedItem).RotorDismatches.Select(rd => rd.RotorModel).Where(rm => rm.TypeId == ((RotorType)lbx_RotorType.SelectedItem).Id))
+                        chb_OtherRotor.IsEnabled = true;
+                        foreach (var rm in cat.GetRotorsForValveInCatalog(catalog.Id, valveInCatalog.Id))
                         {
                             lbx_Rotors.Items.Add(rm);
                         }
@@ -207,8 +247,52 @@ namespace Client.WPF.CPForms
                     else
                     {
                         lbx_Rotors.IsEnabled = false;
+                        chb_OtherRotor.IsEnabled = false;
                     }
                 }                    
+            };
+            lbx_Rotors.SelectionChanged += (s, e) =>
+            {
+                if(lbx_Rotors.SelectedItem != null)
+                    dud_RotorPrice.DataContext = (RotorInCatalog)lbx_Rotors.SelectedItem;
+            };
+            lbx_SOFs.SelectionChanged += (s, e) =>
+            {
+                if(lbx_SOFs.SelectedItem != null)
+                    dud_SOFPrice.DataContext = (SofInCatalog)lbx_SOFs.SelectedItem;
+            };
+
+            chb_OtherRotor.Checked += (s, e) =>
+            {
+                but_RotorOption.IsEnabled = true;
+            };
+            chb_OtherRotor.Unchecked += (s, e) =>
+            {
+                but_RotorOption.IsEnabled = false;
+            };
+            chb_SOF.Checked += (s, e) =>
+            {
+                if(valveInCatalog != null)
+                {
+                    lbx_SOFs.Items.Clear();
+                    lbx_SOFs.IsEnabled = true;
+                    foreach (var sof in cat.GetSofsForValveInCatalog(catalog.Id, valveInCatalog.Id))
+                    {
+                        lbx_SOFs.Items.Add(sof);
+                    }
+                }                
+            };
+            chb_SOF.Unchecked += (s, e) =>
+            {
+                lbx_SOFs.Items.Clear();
+                lbx_SOFs.IsEnabled = false;
+            };
+
+            but_AddPosition.Click += (s, e) =>
+            {
+                ProposalPosition pos = new ProposalPosition() { Amount = 1 };
+                pos.Valve = new ValveInPosition() { BaseValue = (decimal)dud_ValvePrice.Value, ValveModel = valveInCatalog.ValveModel };
+                dgr_Positions.Items.Add(pos);
             };
 
             foreach (var company in cat.GetValveManufacturersInCatalog(catalog.Id))
@@ -217,6 +301,10 @@ namespace Client.WPF.CPForms
             }            
         }
 
+        private void but_RotorOption_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+        
     }
 }
