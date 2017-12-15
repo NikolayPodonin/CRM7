@@ -23,7 +23,12 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         [Key]
         public Guid Id { get; set; }
 
-        public Guid RotorOptionModelId { get; set; }
+        public Guid ModelId { get; set; }
+
+        /// <summary>
+        /// Модель опций привода.
+        /// </summary>
+        public virtual RotorOptionModel Model { get; set; }
 
         public Guid CatalogId { get; set; }
 
@@ -31,11 +36,6 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         /// Каталог, где содержится данная позиция.
         /// </summary>
         public virtual Catalog Catalog { get; set; }
-
-        /// <summary>
-        /// Модель опций привода.
-        /// </summary>
-        public virtual RotorOptionModel RotorOptionModel { get; set; }
 
         #region IPriceable
 

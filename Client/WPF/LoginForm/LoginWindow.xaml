@@ -1,0 +1,24 @@
+﻿<Window x:Class="Client.WPF.LoginForm.LoginWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.WPF.LoginForm"
+             mc:Ignorable="d" d:DesignWidth="300" MinHeight="135" MaxHeight="135" MinWidth="320" MaxWidth="135">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="tbl_Name" Grid.Column="0" Grid.Row="0" Margin="5">Имя пользователя:</TextBlock>
+        <TextBlock x:Name="tbl_Password" Grid.Column="0" Grid.Row="1" Margin="5">Пароль:</TextBlock>
+        <TextBox x:Name="tbx_Name" Grid.Column="1" Grid.Row="0" Margin="5"></TextBox>
+        <TextBox x:Name="tbx_Password" Grid.Column="1" Grid.Row="1" Margin="5"></TextBox>
+        <Button x:Name="but_Ok" Grid.Column="1" Grid.Row="2" Margin="5" Width="40" HorizontalAlignment="Right">OK</Button>
+    </Grid>
+</Window>

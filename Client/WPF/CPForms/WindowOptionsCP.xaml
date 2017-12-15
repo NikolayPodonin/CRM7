@@ -1,0 +1,264 @@
+﻿<Window x:Class="Client.WPF.CPForms.WindowOptionsCP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:nudc="http://schemas.xceed.com/wpf/xaml/toolkit"  
+             xmlns:local="clr-namespace:Client.WPF.CPForms"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600">
+    <Grid x:Name="grid_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" ></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="grid_Top" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="grid_TopLeft" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <GroupBox x:Name="gbx_PriceSet" Margin="2" Grid.Row="0" Header="Ценообразование">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="grid_PriceSet" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock x:Name="tbl_Currency" Grid.Column="1" Grid.Row="0" Margin="2">Валюта:</TextBlock>
+                            <TextBlock x:Name="tbl_EuroRate" Grid.Column="1" Grid.Row="1" Margin="2">Курс евро:</TextBlock>
+                            <TextBlock x:Name="tbl_Discount" Grid.Column="1" Grid.Row="2" Margin="2">Скидка:</TextBlock>
+                            <TextBlock x:Name="tbl_Markup" Grid.Column="1" Grid.Row="3" Margin="2">Наценка:</TextBlock>
+                            <TextBlock x:Name="tbl_Delivery" Grid.Column="1" Grid.Row="4" Margin="2">Доставка:</TextBlock>
+                            <TextBlock x:Name="tbl_DM" Grid.Column="1" Grid.Row="5" Margin="2">ДМ:</TextBlock>
+                            <TextBox x:Name="tbx_AddedValue" Grid.Column="1" Grid.Row="6" Margin="2"></TextBox>
+
+                            <ComboBox x:Name="cbx_Currency" Grid.Column="2" Grid.Row="0" Margin="2"></ComboBox>
+                            <nudc:DoubleUpDown x:Name="dud_EuroRate" Grid.Column="2" Grid.Row="1" Margin="2"></nudc:DoubleUpDown>
+                            <nudc:DoubleUpDown x:Name="dud_Discount" Grid.Column="2" Grid.Row="2" Margin="2"></nudc:DoubleUpDown>
+                            <nudc:DoubleUpDown x:Name="dud_Markup" Grid.Column="2" Grid.Row="3" Margin="2"></nudc:DoubleUpDown>
+                            <nudc:DecimalUpDown x:Name="dmud_Delivery" Grid.Column="2" Grid.Row="4" Margin="2"></nudc:DecimalUpDown>
+                            <nudc:DecimalUpDown x:Name="dmud_DM" Grid.Column="2" Grid.Row="5" Margin="2"></nudc:DecimalUpDown>
+                            <nudc:DecimalUpDown x:Name="dmud_AddedValue" Grid.Column="2" Grid.Row="6" Margin="2"></nudc:DecimalUpDown>
+
+                            <TextBlock x:Name="tbl_EuroRateUnit" Grid.Column="3" Grid.Row="1" Margin="2">руб.</TextBlock>
+                            <TextBlock x:Name="tbl_DiscountUnit" Grid.Column="3" Grid.Row="2" Margin="2">%</TextBlock>
+                            <TextBlock x:Name="tbl_MarkupUnit" Grid.Column="3" Grid.Row="3" Margin="2">%</TextBlock>
+                            <TextBlock x:Name="tbl_DeliveryUnit" Grid.Column="3" Grid.Row="4" Margin="2">руб.</TextBlock>
+                            <TextBlock x:Name="tbl_DMUnit" Grid.Column="3" Grid.Row="5" Margin="2">руб.</TextBlock>
+                            <TextBlock x:Name="tbl_AddedValueUnit" Grid.Column="3" Grid.Row="6" Margin="2">руб.</TextBlock>
+
+                            <Button x:Name="but_Left" Grid.Column="0" Grid.Row="6" Margin="2"  Content="&lt;" />
+                            <Button x:Name="but_Right" Grid.Column="4" Grid.Row="6" Margin="2"  Content="&gt;" />
+                        </Grid>
+                        <Grid x:Name="grid_Buttons" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="but_Delete" Grid.Column="1" Grid.Row="6" Margin="2"  Content="Удалить" />
+                            <Button x:Name="but_Save" Grid.Column="2" Grid.Row="6" Margin="2"  Content="Сохранить" />
+                        </Grid>
+                    </Grid>                    
+                </GroupBox>
+                
+                <GroupBox x:Name="gbx_SigningPerson" Margin="2" Grid.Row="1" Header="Подписывающий руководитель">
+                    <ListBox x:Name="lbx_SigningPerson" Margin="2"></ListBox>
+                </GroupBox>
+                <GroupBox x:Name="gbx_Creator" Margin="2" Grid.Row="2" Header="Исполнитель">
+                    <CheckBox x:Name="chb_ShowInWord" Margin="2" >Отображать в документе Word</CheckBox>
+                </GroupBox>
+                <GroupBox x:Name="gbx_Comment" Margin="2" Grid.Row="3" Header="Комментарий">
+                    <TextBox x:Name="tbx_Comment" Margin="2"></TextBox>
+                </GroupBox>
+            </Grid>
+
+            <Grid x:Name="grid_TopRight" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="tbx_QualityString" Grid.Row="0" Margin="2">
+                    Поставщик поставляет Покупателю ТМЦ производства ООО ЗЭО "Флагман" надлежащего качества.
+                </TextBox>
+                
+                <GroupBox x:Name="gbx_PaymentTerms" Margin="2" Grid.Row="1" Header="Условия оплаты">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="tbx_PaymentTerms" Grid.Row="0" Margin="2"></TextBox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_AddPaymentTerm" Grid.Column="0" Margin="2">Добавить в базу</Button>
+                            <Button x:Name="btn_PrevPaymentTerm" Grid.Column="2" Margin="2">&lt;&lt;</Button>
+                            <Button x:Name="btn_NextPaymentTerm" Grid.Column="3" Margin="2">&gt;&gt;</Button>
+                        </Grid>
+                    </Grid>                    
+                </GroupBox>
+                <GroupBox x:Name="gbx_GuaranteePeriod" Margin="2" Grid.Row="2" Header="Гарантийный срок">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBox x:Name="tbx_GuaranteePeriod" Margin="2"></TextBox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_AddGuaranteePeriod" Grid.Column="0" Margin="2">Добавить в базу</Button>
+                            <Button x:Name="btn_PrevGuaranteePeriod" Grid.Column="2" Margin="2">&lt;&lt;</Button>
+                            <Button x:Name="btn_NextGuaranteePeriod" Grid.Column="3" Margin="2">&gt;&gt;</Button>
+                        </Grid>
+                    </Grid>
+                    
+                    
+                </GroupBox>
+
+                <TextBox x:Name="tbx_DeliveryString" Grid.Row="3" Margin="2">
+                    Стоимость тары и транспортных расходов включены в стоимость ТМЦ.
+                </TextBox>
+
+                <GroupBox x:Name="gbx_DeliveryPeriod" Margin="2" Grid.Row="4" Header="Срок доставки">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBox x:Name="tbx_DeliveryPeriod" Margin="2"></TextBox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_AddDeliveryPeriod" Grid.Column="0" Margin="2">Добавить в базу</Button>
+                            <Button x:Name="btn_PrevDeliveryPeriod" Grid.Column="2" Margin="2">&lt;&lt;</Button>
+                            <Button x:Name="btn_NextDeliveryPeriod" Grid.Column="3" Margin="2">&gt;&gt;</Button>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="gbx_DeliveryWay" Margin="2" Grid.Row="5" Header="Способ доставки">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBox x:Name="tbx_DeliveryWay" Margin="2"></TextBox>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btn_AddDeliveryWay" Grid.Column="0" Margin="2">Добавить в базу</Button>
+                            <Button x:Name="btn_PrevDeliveryWay" Grid.Column="2" Margin="2">&lt;&lt;</Button>
+                            <Button x:Name="btn_NextDeliveryWay" Grid.Column="3" Margin="2">&gt;&gt;</Button>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="grid_Bottom" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox x:Name="gbx_Contragent" Margin="2" Grid.Column="0" Header="Кому">
+                <Grid x:Name="grid_Contragetnt">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="tbl_Company" Grid.Column="0" Grid.Row="0" Margin="2">Компания:</TextBlock>
+                    <TextBlock x:Name="tbl_Position" Grid.Column="0" Grid.Row="1" Margin="2">Должность:</TextBlock>
+                    <TextBlock x:Name="tbl_Initials" Grid.Column="0" Grid.Row="2" Margin="2">ФИО:</TextBlock>
+
+                    <ComboBox x:Name="cbx_Company" Grid.Column="1" Grid.Row="0" Margin="2"></ComboBox>
+                    <ComboBox x:Name="cbx_Position" Grid.Column="1" Grid.Row="1" Margin="2"></ComboBox>
+                    <ComboBox x:Name="cbx_Initials" Grid.Column="1" Grid.Row="2" Margin="2"></ComboBox>
+                </Grid>                
+            </GroupBox>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="but_Apply" Grid.Column="2" Grid.Row="2" Margin="2">Применить</Button>
+                <Button x:Name="but_Ok" Grid.Column="3" Grid.Row="2" Margin="2">OK</Button>
+                <Button x:Name="but_Cancel" Grid.Column="4" Grid.Row="2" Margin="2">Отмена</Button>
+            </Grid>
+        </Grid>
+
+        
+    </Grid>
+</Window>

@@ -1,0 +1,185 @@
+﻿<Window x:Class="Client.WPF.WindowContragents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="322.332" d:DesignWidth="378.908">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="30"></RowDefinition>
+            <RowDefinition Height="14*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Grid Name="g_TopContainer" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <ComboBox Name="cb_CompanyType" Margin="5,5,10,5" />
+        </Grid>
+
+        <Grid Name="g_Container" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TreeView Name="Facilities" Margin="5">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Facilities}">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5,2,5,10">
+                    <Button Margin="2,0,0,0"  Padding="2" Content="Обновить" Click="cmdUpdateCompanyList_Click"/>
+                    <Button Name="DeleteButton" Margin="2,0,0,0"  Padding="2" Content="Удалить" Click="cmdDeleteFacility_Click"/>
+                    <Button Margin="2,0,0,0"  Padding="2" Content="Сохранить" Click="cmdSaveFacility_Click"/>
+                </StackPanel>
+            </Grid>
+
+
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" Width="5"/>
+            
+            <Border Grid.Column="2" Padding="7" Margin="7" Background="LightSteelBlue">
+                <ScrollViewer>
+                    <Grid  Name="gridFacilityDetails" DataContext="{Binding ElementName=Facilities, Path=SelectedItem}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+
+                        <TextBlock Margin="7">Короткое наименование:</TextBlock>
+                        <TextBox Name="tb_Name" Margin="5" Grid.Column="1" Text="{Binding Path=Tag.Name}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="1">Полное наименование:</TextBlock>
+                        <TextBox Name="tb_FullName" Margin="5" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Tag.FullName}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="2">Телефон:</TextBlock>
+                        <TextBox Name="tb_Phone" Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Tag.Phone}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="3">Fax:</TextBlock>
+                        <TextBox Name="tb_Fax" Margin="5" Grid.Column="1" Grid.Row="3" Text="{Binding Path=Tag.FAX}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="4">Фактический адрес:</TextBlock>
+                        <TextBox Name="tb_PostAdress" Margin="5" Grid.Column="1" Grid.Row="4" Text="{Binding Path=Tag.PostAdress}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="5">Email:</TextBlock>
+                        <TextBox Name="tb_Email" Margin="5" Grid.Column="1" Grid.Row="5" Text="{Binding Path=Tag.Email}"></TextBox>
+                        <TextBlock Margin="7" Grid.Row="6">Web:</TextBlock>
+                        <TextBox Name="tb_Web" Margin="5" Grid.Column="1" Grid.Row="6" Text="{Binding Path=Tag.Web}"></TextBox>
+
+                        <Grid Name="gridCompanyDetails" Grid.Row="7" DataContext="{Binding ElementName=Facilities, Path=SelectedItem}">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Margin="8" Grid.Row="1">ИНН:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="2">КПП:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="3">Юридический адрес:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="4">Расчетный счет:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="5">Корреспондентский счет:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="6">БИК:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="7">Банк:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="8">ОГРН:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="9">ОКПО:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="10">ОКАТО:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="11">ОКТМО:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="12">ОКВЕД:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="13">ОКОГУ:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="14">ОКОПФ:</TextBlock>
+                            <TextBlock Margin="8" Grid.Row="15">ОКФС:</TextBlock>
+
+                        </Grid>
+                        <Grid Name="gridCompanyDetails2" Grid.Column="1" Grid.Row="7" DataContext="{Binding ElementName=Facilities, Path=SelectedItem}">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Name="tb_INN" Margin="5" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Tag.INN}"></TextBox>
+                            <TextBox Name="tb_KPP" Margin="5" Grid.Column="1" Grid.Row="2" Text="{Binding Path=Tag.KPP}"></TextBox>
+                            <TextBox Name="tb_JurAddress" Margin="5" Grid.Column="1" Grid.Row="3" Text="{Binding Path=Tag.JurAddress}"></TextBox>
+                            <TextBox Name="tb_BankAccount" Margin="5" Grid.Column="1" Grid.Row="4" Text="{Binding Path=Tag.BankAccount}"></TextBox>
+                            <TextBox Name="tb_CorrespAccount" Margin="5" Grid.Column="1" Grid.Row="5" Text="{Binding Path=Tag.CorrespAccount}"></TextBox>
+                            <TextBox Name="tb_BIK" Margin="5" Grid.Column="1" Grid.Row="6" Text="{Binding Path=Tag.BIK}"></TextBox>
+                            <TextBox Name="tb_Bank" Margin="5" Grid.Column="1" Grid.Row="7" Text="{Binding Path=Tag.Bank}"></TextBox>
+                            <TextBox Name="tb_OGRN" Margin="5" Grid.Column="1" Grid.Row="8" Text="{Binding Path=Tag.OGRN}"></TextBox>
+                            <TextBox Name="tb_OKPO" Margin="5" Grid.Column="1" Grid.Row="9" Text="{Binding Path=Tag.OKPO}"></TextBox>
+                            <TextBox Name="tb_OKATO" Margin="5" Grid.Column="1" Grid.Row="10" Text="{Binding Path=Tag.OKATO}"></TextBox>
+                            <TextBox Name="tb_OKTMO" Margin="5" Grid.Column="1" Grid.Row="11" Text="{Binding Path=Tag.OKTMO}"></TextBox>
+                            <TextBox Name="tb_OKVED" Margin="5" Grid.Column="1" Grid.Row="12" Text="{Binding Path=Tag.OKVED}"></TextBox>
+                            <TextBox Name="tb_OKOGU" Margin="5" Grid.Column="1" Grid.Row="13" Text="{Binding Path=Tag.OKOGU}"></TextBox>
+                            <TextBox Name="tb_OKOPF" Margin="5" Grid.Column="1" Grid.Row="14" Text="{Binding Path=Tag.OKOPF}"></TextBox>
+                            <TextBox Name="tb_OKFS" Margin="5" Grid.Column="1" Grid.Row="15" Text="{Binding Path=Tag.OKFS}"></TextBox>
+
+                        </Grid>
+
+                    </Grid>
+                </ScrollViewer>
+                
+            </Border>
+
+        </Grid>
+
+
+    </Grid>
+
+</Window>

@@ -9,3 +9,15 @@ C:\Users\Николай\Documents\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel
 C:\Users\Николай\Documents\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.csproj.GenerateResource.Cache
 C:\Users\Николай\Documents\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.dll
 C:\Users\Николай\Documents\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.pdb
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\CRM7.DataModel.dll.config
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\CRM7.DataModel.dll
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\CRM7.DataModel.pdb
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\EntityFramework.dll
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\EntityFramework.xml
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.Properties.Resources.resources
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.csproj.GenerateResource.Cache
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.csproj.CoreCompileInputs.cache
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.dll
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.pdb

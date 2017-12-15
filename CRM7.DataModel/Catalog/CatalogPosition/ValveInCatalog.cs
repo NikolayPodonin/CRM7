@@ -24,12 +24,12 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         [Key]
         public Guid Id { get; set; }
 
-        public Guid ValveModelId { get; set; }
+        public Guid ModelId { get; set; }
 
         /// <summary>
         /// Модель арматуры.
         /// </summary>
-        public virtual ValveModel ValveModel { get; set; }
+        public virtual ValveModel Model { get; set; }
 
         public Guid CatalogId { get; set; }
 

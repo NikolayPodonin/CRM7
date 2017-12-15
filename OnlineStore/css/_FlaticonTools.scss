@@ -1,0 +1,115 @@
+    /*
+    FlaticonTools icon font: FlaticonTools
+    Creation date: 29/11/2017 10:52
+    */
+
+    @font-face {
+  font-family: "FlaticonTools";
+  src: url("./FlaticonTools.eot");
+  src: url("./FlaticonTools.eot?#iefix") format("embedded-opentype"),
+       url("./FlaticonTools.woff") format("woff"),
+       url("./FlaticonTools.ttf") format("truetype"),
+       url("./FlaticonTools.svg#FlaticonTools") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FlaticonTools";
+    src: url("./FlaticonTools.svg#FlaticonTools") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "FlaticonTools";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .FlaticonTools-001-wrench-1:before { content: "\f100"; }
+.FlaticonTools-002-wrench:before { content: "\f101"; }
+.FlaticonTools-003-tool:before { content: "\f102"; }
+.FlaticonTools-004-pliers-2:before { content: "\f103"; }
+.FlaticonTools-005-wheelbarrow:before { content: "\f104"; }
+.FlaticonTools-006-pliers-1:before { content: "\f105"; }
+.FlaticonTools-007-shovel-1:before { content: "\f106"; }
+.FlaticonTools-008-fire-extinguisher-1:before { content: "\f107"; }
+.FlaticonTools-009-measuring-tape:before { content: "\f108"; }
+.FlaticonTools-010-stapler:before { content: "\f109"; }
+.FlaticonTools-011-drafting:before { content: "\f10a"; }
+.FlaticonTools-012-shovel:before { content: "\f10b"; }
+.FlaticonTools-013-screwdriver:before { content: "\f10c"; }
+.FlaticonTools-014-scissors:before { content: "\f10d"; }
+.FlaticonTools-015-saw-1:before { content: "\f10e"; }
+.FlaticonTools-016-safety-pin-1:before { content: "\f10f"; }
+.FlaticonTools-017-safety-pin:before { content: "\f110"; }
+.FlaticonTools-018-ruler-3:before { content: "\f111"; }
+.FlaticonTools-019-ruler-2:before { content: "\f112"; }
+.FlaticonTools-020-ruler-1:before { content: "\f113"; }
+.FlaticonTools-021-ruler:before { content: "\f114"; }
+.FlaticonTools-022-paint-brush:before { content: "\f115"; }
+.FlaticonTools-023-paint-roller:before { content: "\f116"; }
+.FlaticonTools-024-magnetism:before { content: "\f117"; }
+.FlaticonTools-025-swiss-army-knife:before { content: "\f118"; }
+.FlaticonTools-026-hammer:before { content: "\f119"; }
+.FlaticonTools-027-saw:before { content: "\f11a"; }
+.FlaticonTools-028-flashlight:before { content: "\f11b"; }
+.FlaticonTools-029-fire-extinguisher:before { content: "\f11c"; }
+.FlaticonTools-030-drill-1:before { content: "\f11d"; }
+.FlaticonTools-031-drill:before { content: "\f11e"; }
+.FlaticonTools-032-compass:before { content: "\f11f"; }
+.FlaticonTools-033-clamp-1:before { content: "\f120"; }
+.FlaticonTools-034-clamp:before { content: "\f121"; }
+.FlaticonTools-035-pliers:before { content: "\f122"; }
+.FlaticonTools-036-caulk-gun:before { content: "\f123"; }
+.FlaticonTools-037-cutter:before { content: "\f124"; }
+.FlaticonTools-038-axe:before { content: "\f125"; }
+    
+    $font-FlaticonTools-001-wrench-1: "\f100";
+    $font-FlaticonTools-002-wrench: "\f101";
+    $font-FlaticonTools-003-tool: "\f102";
+    $font-FlaticonTools-004-pliers-2: "\f103";
+    $font-FlaticonTools-005-wheelbarrow: "\f104";
+    $font-FlaticonTools-006-pliers-1: "\f105";
+    $font-FlaticonTools-007-shovel-1: "\f106";
+    $font-FlaticonTools-008-fire-extinguisher-1: "\f107";
+    $font-FlaticonTools-009-measuring-tape: "\f108";
+    $font-FlaticonTools-010-stapler: "\f109";
+    $font-FlaticonTools-011-drafting: "\f10a";
+    $font-FlaticonTools-012-shovel: "\f10b";
+    $font-FlaticonTools-013-screwdriver: "\f10c";
+    $font-FlaticonTools-014-scissors: "\f10d";
+    $font-FlaticonTools-015-saw-1: "\f10e";
+    $font-FlaticonTools-016-safety-pin-1: "\f10f";
+    $font-FlaticonTools-017-safety-pin: "\f110";
+    $font-FlaticonTools-018-ruler-3: "\f111";
+    $font-FlaticonTools-019-ruler-2: "\f112";
+    $font-FlaticonTools-020-ruler-1: "\f113";
+    $font-FlaticonTools-021-ruler: "\f114";
+    $font-FlaticonTools-022-paint-brush: "\f115";
+    $font-FlaticonTools-023-paint-roller: "\f116";
+    $font-FlaticonTools-024-magnetism: "\f117";
+    $font-FlaticonTools-025-swiss-army-knife: "\f118";
+    $font-FlaticonTools-026-hammer: "\f119";
+    $font-FlaticonTools-027-saw: "\f11a";
+    $font-FlaticonTools-028-flashlight: "\f11b";
+    $font-FlaticonTools-029-fire-extinguisher: "\f11c";
+    $font-FlaticonTools-030-drill-1: "\f11d";
+    $font-FlaticonTools-031-drill: "\f11e";
+    $font-FlaticonTools-032-compass: "\f11f";
+    $font-FlaticonTools-033-clamp-1: "\f120";
+    $font-FlaticonTools-034-clamp: "\f121";
+    $font-FlaticonTools-035-pliers: "\f122";
+    $font-FlaticonTools-036-caulk-gun: "\f123";
+    $font-FlaticonTools-037-cutter: "\f124";
+    $font-FlaticonTools-038-axe: "\f125";

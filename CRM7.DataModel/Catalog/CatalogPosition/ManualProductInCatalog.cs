@@ -23,12 +23,12 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         [Key]
         public Guid Id { get; set; }
 
-        public Guid ManualProductModelId { get; set; }
+        public Guid ModelId { get; set; }
 
         /// <summary>
         /// Модель фланцев.
         /// </summary>
-        public virtual ManualProductModel ManualProductModel { get; set; }
+        public virtual ManualProductModel Model { get; set; }
 
         public Guid CatalogId { get; set; }
 

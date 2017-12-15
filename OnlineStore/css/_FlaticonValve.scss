@@ -1,0 +1,83 @@
+    /*
+    FlaticonValve icon font: FlaticonValve
+    Creation date: 15/12/2017 09:08
+    */
+
+    @font-face {
+  font-family: "FlaticonValve";
+  src: url("./FlaticonValve.eot");
+  src: url("./FlaticonValve.eot?#iefix") format("embedded-opentype"),
+       url("./FlaticonValve.woff") format("woff"),
+       url("./FlaticonValve.ttf") format("truetype"),
+       url("./FlaticonValve.svg#FlaticonValve") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FlaticonValve";
+    src: url("./FlaticonValve.svg#FlaticonValve") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "FlaticonValve";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .FlaticonValve-oil-15:before { content: "\f100"; }
+.FlaticonValve-oil-14:before { content: "\f101"; }
+.FlaticonValve-oil-13:before { content: "\f102"; }
+.FlaticonValve-oil-12:before { content: "\f103"; }
+.FlaticonValve-oil-11:before { content: "\f104"; }
+.FlaticonValve-oil-10:before { content: "\f105"; }
+.FlaticonValve-oil-9:before { content: "\f106"; }
+.FlaticonValve-oil-8:before { content: "\f107"; }
+.FlaticonValve-oil-7:before { content: "\f108"; }
+.FlaticonValve-oil-6:before { content: "\f109"; }
+.FlaticonValve-oil-5:before { content: "\f10a"; }
+.FlaticonValve-technology-1:before { content: "\f10b"; }
+.FlaticonValve-technology:before { content: "\f10c"; }
+.FlaticonValve-oil-4:before { content: "\f10d"; }
+.FlaticonValve-oil-3:before { content: "\f10e"; }
+.FlaticonValve-oil-2:before { content: "\f10f"; }
+.FlaticonValve-oil-1:before { content: "\f110"; }
+.FlaticonValve-oil:before { content: "\f111"; }
+.FlaticonValve-gas-pipe-2:before { content: "\f112"; }
+.FlaticonValve-gas-pipe-1:before { content: "\f113"; }
+.FlaticonValve-gas-pipe:before { content: "\f114"; }
+.FlaticonValve-valve:before { content: "\f115"; }
+    
+    $font-FlaticonValve-oil-15: "\f100";
+    $font-FlaticonValve-oil-14: "\f101";
+    $font-FlaticonValve-oil-13: "\f102";
+    $font-FlaticonValve-oil-12: "\f103";
+    $font-FlaticonValve-oil-11: "\f104";
+    $font-FlaticonValve-oil-10: "\f105";
+    $font-FlaticonValve-oil-9: "\f106";
+    $font-FlaticonValve-oil-8: "\f107";
+    $font-FlaticonValve-oil-7: "\f108";
+    $font-FlaticonValve-oil-6: "\f109";
+    $font-FlaticonValve-oil-5: "\f10a";
+    $font-FlaticonValve-technology-1: "\f10b";
+    $font-FlaticonValve-technology: "\f10c";
+    $font-FlaticonValve-oil-4: "\f10d";
+    $font-FlaticonValve-oil-3: "\f10e";
+    $font-FlaticonValve-oil-2: "\f10f";
+    $font-FlaticonValve-oil-1: "\f110";
+    $font-FlaticonValve-oil: "\f111";
+    $font-FlaticonValve-gas-pipe-2: "\f112";
+    $font-FlaticonValve-gas-pipe-1: "\f113";
+    $font-FlaticonValve-gas-pipe: "\f114";
+    $font-FlaticonValve-valve: "\f115";

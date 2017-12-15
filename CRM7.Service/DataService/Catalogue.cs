@@ -62,7 +62,7 @@ namespace CRM7.Service
                     return valveInCatalog;
                 }
                 valveInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                valveInCatalog.ValveModel = context.ValveModels.Find(valveModelId);
+                valveInCatalog.Model = context.ValveModels.Find(valveModelId);
                 valveInCatalog.RotorType = context.RotorTypes.Find(rotorTypeId);
                 valveInCatalog = context.ValveInCatalogs.Add(valveInCatalog);
                 context.SaveChanges();
@@ -93,7 +93,7 @@ namespace CRM7.Service
                     return rotorInCatalog;
                 }
                 rotorInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                rotorInCatalog.RotorModel = context.RotorModels.Find(rotorModelId);
+                rotorInCatalog.Model = context.RotorModels.Find(rotorModelId);
                 rotorInCatalog = context.RotorInCatalogs.Add(rotorInCatalog);
                 context.SaveChanges();
                 return rotorInCatalog;
@@ -123,7 +123,7 @@ namespace CRM7.Service
                     return sofInCatalog;
                 }
                 sofInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                sofInCatalog.SofModel = context.SofModels.Find(sofModelId);
+                sofInCatalog.Model = context.SofModels.Find(sofModelId);
                 sofInCatalog = context.SofInCatalogs.Add(sofInCatalog);
                 context.SaveChanges();
                 return sofInCatalog;
@@ -166,7 +166,7 @@ namespace CRM7.Service
             try
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
-                List<Company> tempManufacturers = context.Catalogs.Find(catalogId).Valves.Select(i => i.ValveModel.Manufacturer).Distinct().ToList();
+                List<Company> tempManufacturers = context.Catalogs.Find(catalogId).Valves.Select(i => i.Model.Manufacturer).Distinct().ToList();
                 return tempManufacturers;
             }
             catch (Exception e)
@@ -188,7 +188,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel).Where(i => i.ManufacturerId == manufacturerId).ToList();
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model).Where(i => i.ManufacturerId == manufacturerId).ToList();
                 List<ValveType> tempValveTypes = vm.Select(i => i.Type).Distinct().ToList();                                
                 return tempValveTypes;
             }
@@ -212,7 +212,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel).Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId).ToList();
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model).Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId).ToList();
                 List<ValveSeries> tempValveSeries = vm.Select(i => i.Series).Distinct().ToList();
                 return tempValveSeries;
             }
@@ -237,7 +237,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId && i.SeriesId == seriesId).ToList();
                 List<ValveConnection> tempValveConnection = vm.Select(i => i.Connection).Distinct().ToList();
                 return tempValveConnection;
@@ -264,7 +264,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId && i.SeriesId == seriesId && i.ConnectionId == connectionId).ToList();
                 List<DataModel.Product.Environment> tempValveEnvironment = vm.Select(i => i.Environment).Distinct().ToList();
                 return tempValveEnvironment;
@@ -292,7 +292,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId 
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId).ToList();
@@ -323,7 +323,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId).ToList();
@@ -358,7 +358,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
@@ -394,7 +394,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
@@ -432,7 +432,7 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveModel> vm = cat.Valves.Select(i => i.ValveModel)
+                List<ValveModel> vm = cat.Valves.Select(i => i.Model)
                     .Where(i => i.ManufacturerId == manufacturerId && i.TypeId == typeId
                             && i.SeriesId == seriesId && i.ConnectionId == connectionId
                             && i.EnvironmentId == environmentId && i.BodyMaterialId == materialId
@@ -471,11 +471,11 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                List<ValveInCatalog> vc = cat.Valves.Where(i => i.ValveModel.ManufacturerId == manufacturerId && i.ValveModel.TypeId == typeId
-                            && i.ValveModel.SeriesId == seriesId && i.ValveModel.ConnectionId == connectionId
-                            && i.ValveModel.EnvironmentId == environmentId && i.ValveModel.BodyMaterialId == materialId
-                            && i.ValveModel.ConsolidationId == consolidationId && i.ValveModel.Controlling == controlling
-                            && i.ValveModel.DN == DN && i.ValveModel.PN == PN).ToList();
+                List<ValveInCatalog> vc = cat.Valves.Where(i => i.Model.ManufacturerId == manufacturerId && i.Model.TypeId == typeId
+                            && i.Model.SeriesId == seriesId && i.Model.ConnectionId == connectionId
+                            && i.Model.EnvironmentId == environmentId && i.Model.BodyMaterialId == materialId
+                            && i.Model.ConsolidationId == consolidationId && i.Model.Controlling == controlling
+                            && i.Model.DN == DN && i.Model.PN == PN).ToList();
                 return vc.Select(v => v.RotorType).Distinct().ToList();
             }
             catch (Exception e)
@@ -510,11 +510,11 @@ namespace CRM7.Service
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
-                ValveInCatalog vc = cat.Valves.Where(i => i.ValveModel.ManufacturerId == manufacturerId && i.ValveModel.TypeId == typeId
-                            && i.ValveModel.SeriesId == seriesId && i.ValveModel.ConnectionId == connectionId
-                            && i.ValveModel.EnvironmentId == environmentId && i.ValveModel.BodyMaterialId == materialId
-                            && i.ValveModel.ConsolidationId == consolidationId && i.ValveModel.Controlling == controlling
-                            && i.ValveModel.DN == DN && i.ValveModel.PN == PN).Single(rm => rm.RotorTypeId == rotorTypeId);
+                ValveInCatalog vc = cat.Valves.Where(i => i.Model.ManufacturerId == manufacturerId && i.Model.TypeId == typeId
+                            && i.Model.SeriesId == seriesId && i.Model.ConnectionId == connectionId
+                            && i.Model.EnvironmentId == environmentId && i.Model.BodyMaterialId == materialId
+                            && i.Model.ConsolidationId == consolidationId && i.Model.Controlling == controlling
+                            && i.Model.DN == DN && i.Model.PN == PN).Single(rm => rm.RotorTypeId == rotorTypeId);
                 return vc;
             }
             catch (Exception e)
@@ -538,7 +538,7 @@ namespace CRM7.Service
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
                 ValveInCatalog vc = cat.Valves.Single(i => i.Id == valveInCatalogId);
-                List<RotorModel> rms = vc.ValveModel.RotorDismatches.Select(rd => rd.RotorModel).Where(rm => rm.TypeId == vc.RotorTypeId).ToList();
+                List<RotorModel> rms = vc.Model.RotorDismatches.Select(rd => rd.RotorModel).Where(rm => rm.TypeId == vc.RotorTypeId).ToList();
                 List<RotorInCatalog> result = new List<RotorInCatalog>();
                 foreach (var ric in cat.Rotors)
                 {
@@ -572,13 +572,13 @@ namespace CRM7.Service
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 Catalog cat = context.Catalogs.Find(catalogId);
                 ValveInCatalog vc = cat.Valves.Single(i => i.Id == valveInCatalogId);
-                List<SofModel> sms = vc.ValveModel.SofDismatches.Select(sd => sd.SofModel).ToList();
+                List<SofModel> sms = vc.Model.SofDismatches.Select(sd => sd.SofModel).ToList();
                 List<SofInCatalog> result = new List<SofInCatalog>();
                 foreach (var sic in cat.SOFs)
                 {
                     foreach (var sofm in sms)
                     {
-                        if (sic.SofModelId == sofm.Id)
+                        if (sic.ModelId == sofm.Id)
                         {
                             result.Add(sic);
                         }

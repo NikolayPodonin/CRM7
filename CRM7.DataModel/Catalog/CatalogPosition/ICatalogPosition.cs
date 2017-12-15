@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRM7.DataModel.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
 {
     interface ICatalogPosition : IPriceable
     {
-
+        
     }
 }

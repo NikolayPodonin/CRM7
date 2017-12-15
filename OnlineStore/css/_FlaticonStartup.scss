@@ -1,0 +1,139 @@
+    /*
+    FlaticonStartup icon font: FlaticonStartup
+    Creation date: 28/11/2017 11:24
+    */
+
+    @font-face {
+  font-family: "FlaticonStartup";
+  src: url("./FlaticonStartup.eot");
+  src: url("./FlaticonStartup.eot?#iefix") format("embedded-opentype"),
+       url("./FlaticonStartup.woff") format("woff"),
+       url("./FlaticonStartup.ttf") format("truetype"),
+       url("./FlaticonStartup.svg#FlaticonStartup") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FlaticonStartup";
+    src: url("./FlaticonStartup.svg#FlaticonStartup") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "FlaticonStartup";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .FlaticonStartup-001-browser:before { content: "\f100"; }
+.FlaticonStartup-002-website:before { content: "\f101"; }
+.FlaticonStartup-003-online-shop-2:before { content: "\f102"; }
+.FlaticonStartup-004-wall-clock:before { content: "\f103"; }
+.FlaticonStartup-005-target:before { content: "\f104"; }
+.FlaticonStartup-006-support:before { content: "\f105"; }
+.FlaticonStartup-007-strategy:before { content: "\f106"; }
+.FlaticonStartup-008-speech:before { content: "\f107"; }
+.FlaticonStartup-009-shop:before { content: "\f108"; }
+.FlaticonStartup-010-shield:before { content: "\f109"; }
+.FlaticonStartup-011-server:before { content: "\f10a"; }
+.FlaticonStartup-012-search:before { content: "\f10b"; }
+.FlaticonStartup-013-scales:before { content: "\f10c"; }
+.FlaticonStartup-014-startup:before { content: "\f10d"; }
+.FlaticonStartup-015-panel:before { content: "\f10e"; }
+.FlaticonStartup-016-responsive:before { content: "\f10f"; }
+.FlaticonStartup-017-presentation:before { content: "\f110"; }
+.FlaticonStartup-018-gamepad:before { content: "\f111"; }
+.FlaticonStartup-019-online-shop-1:before { content: "\f112"; }
+.FlaticonStartup-020-office:before { content: "\f113"; }
+.FlaticonStartup-021-mountain:before { content: "\f114"; }
+.FlaticonStartup-022-money:before { content: "\f115"; }
+.FlaticonStartup-023-money-bag:before { content: "\f116"; }
+.FlaticonStartup-024-online-shop:before { content: "\f117"; }
+.FlaticonStartup-025-payment-method:before { content: "\f118"; }
+.FlaticonStartup-026-microscope:before { content: "\f119"; }
+.FlaticonStartup-027-megaphone:before { content: "\f11a"; }
+.FlaticonStartup-028-lifebuoy:before { content: "\f11b"; }
+.FlaticonStartup-029-key:before { content: "\f11c"; }
+.FlaticonStartup-030-hourglass:before { content: "\f11d"; }
+.FlaticonStartup-031-growth:before { content: "\f11e"; }
+.FlaticonStartup-032-folder:before { content: "\f11f"; }
+.FlaticonStartup-033-factory:before { content: "\f120"; }
+.FlaticonStartup-034-flask:before { content: "\f121"; }
+.FlaticonStartup-035-envelope:before { content: "\f122"; }
+.FlaticonStartup-036-certificate:before { content: "\f123"; }
+.FlaticonStartup-037-cup:before { content: "\f124"; }
+.FlaticonStartup-038-auction:before { content: "\f125"; }
+.FlaticonStartup-039-agenda:before { content: "\f126"; }
+.FlaticonStartup-040-compass:before { content: "\f127"; }
+.FlaticonStartup-041-coffee:before { content: "\f128"; }
+.FlaticonStartup-042-clipboard:before { content: "\f129"; }
+.FlaticonStartup-043-chat:before { content: "\f12a"; }
+.FlaticonStartup-044-briefcase:before { content: "\f12b"; }
+.FlaticonStartup-045-calendar:before { content: "\f12c"; }
+.FlaticonStartup-046-calculator:before { content: "\f12d"; }
+.FlaticonStartup-047-idea:before { content: "\f12e"; }
+.FlaticonStartup-048-package:before { content: "\f12f"; }
+.FlaticonStartup-049-binoculars:before { content: "\f130"; }
+.FlaticonStartup-050-medal:before { content: "\f131"; }
+    
+    $font-FlaticonStartup-001-browser: "\f100";
+    $font-FlaticonStartup-002-website: "\f101";
+    $font-FlaticonStartup-003-online-shop-2: "\f102";
+    $font-FlaticonStartup-004-wall-clock: "\f103";
+    $font-FlaticonStartup-005-target: "\f104";
+    $font-FlaticonStartup-006-support: "\f105";
+    $font-FlaticonStartup-007-strategy: "\f106";
+    $font-FlaticonStartup-008-speech: "\f107";
+    $font-FlaticonStartup-009-shop: "\f108";
+    $font-FlaticonStartup-010-shield: "\f109";
+    $font-FlaticonStartup-011-server: "\f10a";
+    $font-FlaticonStartup-012-search: "\f10b";
+    $font-FlaticonStartup-013-scales: "\f10c";
+    $font-FlaticonStartup-014-startup: "\f10d";
+    $font-FlaticonStartup-015-panel: "\f10e";
+    $font-FlaticonStartup-016-responsive: "\f10f";
+    $font-FlaticonStartup-017-presentation: "\f110";
+    $font-FlaticonStartup-018-gamepad: "\f111";
+    $font-FlaticonStartup-019-online-shop-1: "\f112";
+    $font-FlaticonStartup-020-office: "\f113";
+    $font-FlaticonStartup-021-mountain: "\f114";
+    $font-FlaticonStartup-022-money: "\f115";
+    $font-FlaticonStartup-023-money-bag: "\f116";
+    $font-FlaticonStartup-024-online-shop: "\f117";
+    $font-FlaticonStartup-025-payment-method: "\f118";
+    $font-FlaticonStartup-026-microscope: "\f119";
+    $font-FlaticonStartup-027-megaphone: "\f11a";
+    $font-FlaticonStartup-028-lifebuoy: "\f11b";
+    $font-FlaticonStartup-029-key: "\f11c";
+    $font-FlaticonStartup-030-hourglass: "\f11d";
+    $font-FlaticonStartup-031-growth: "\f11e";
+    $font-FlaticonStartup-032-folder: "\f11f";
+    $font-FlaticonStartup-033-factory: "\f120";
+    $font-FlaticonStartup-034-flask: "\f121";
+    $font-FlaticonStartup-035-envelope: "\f122";
+    $font-FlaticonStartup-036-certificate: "\f123";
+    $font-FlaticonStartup-037-cup: "\f124";
+    $font-FlaticonStartup-038-auction: "\f125";
+    $font-FlaticonStartup-039-agenda: "\f126";
+    $font-FlaticonStartup-040-compass: "\f127";
+    $font-FlaticonStartup-041-coffee: "\f128";
+    $font-FlaticonStartup-042-clipboard: "\f129";
+    $font-FlaticonStartup-043-chat: "\f12a";
+    $font-FlaticonStartup-044-briefcase: "\f12b";
+    $font-FlaticonStartup-045-calendar: "\f12c";
+    $font-FlaticonStartup-046-calculator: "\f12d";
+    $font-FlaticonStartup-047-idea: "\f12e";
+    $font-FlaticonStartup-048-package: "\f12f";
+    $font-FlaticonStartup-049-binoculars: "\f130";
+    $font-FlaticonStartup-050-medal: "\f131";

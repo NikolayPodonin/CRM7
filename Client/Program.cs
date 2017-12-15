@@ -68,10 +68,13 @@ namespace Client
             //cat.AddRotorInCatalog(new RotorInCatalog(), catal.Id, EAMod.Id);
             //cat.AddSofInCatalog(new SofInCatalog(), catal.Id, SofMod.Id);
 
+            Singleton.Catalogue = new Catalogue();
 
-
-            WPF.CPForms.WindowMainCP CP = new WPF.CPForms.WindowMainCP();
-            app.Run(CP);
+            //WPF.CPForms.WindowMainCP CP = new WPF.CPForms.WindowMainCP();
+            //WPF.CPForms.WindowOptionsCP op = new WPF.CPForms.WindowOptionsCP();
+            //WPF.PassportForms.WindowPassport wp = new WPF.PassportForms.WindowPassport();
+            WPF.LoginForm.LoginWindow lw = new WPF.LoginForm.LoginWindow();
+            app.Run(lw);
             
         }
     }

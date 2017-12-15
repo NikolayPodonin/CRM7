@@ -5,18 +5,49 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.WPF.CPForms"
              xmlns:nudc="http://schemas.xceed.com/wpf/xaml/toolkit"    
-        mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" MinHeight="500"  MinWidth="850" Height="575" Width="850">
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="850" MinHeight="500"  MinWidth="850" Height="575" Width="850">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="50*"  MinHeight="250" MaxHeight="350"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="#FFE5E5E5"></Grid>
+        <Menu Grid.Row="0" VerticalAlignment="Stretch">
+            <MenuItem x:Name="mi_CP" Header="КП">
+                <MenuItem x:Name="mi_Create" Header="Создать"></MenuItem>
+                <MenuItem x:Name="mi_Open" Header="Открыть"></MenuItem>
+                <MenuItem x:Name="mi_Save" Header="Сохранить"></MenuItem>
+                <Separator />
+                <MenuItem x:Name="mi_Options" Header="Опции"></MenuItem>
+                <MenuItem x:Name="mi_OpenWord" Header="Открыть Word"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mi_Instruments" Header="Инструменты">
+                <MenuItem x:Name="mi_DeletedPositions" Header="Удаленные позиции"></MenuItem>
+                <MenuItem x:Name="mi_CopyPosition" Header="Копировать позицию"></MenuItem>
+                <MenuItem x:Name="mi_PastPosition" Header="Вставить позицию"></MenuItem>
+                <Separator />
+                <MenuItem x:Name="mi_PriceCalculate" Header="Рассчет прайсов"></MenuItem>
+                <MenuItem x:Name="mi_SofPurchase" Header="Закуп фланцев"></MenuItem>
+                <MenuItem x:Name="mi_Preview" Header="Предварительный просмотр"></MenuItem>
+                <MenuItem x:Name="mi_Order" Header="Заказать">
+                    <MenuItem x:Name="mi_Valve" Header="Арматуру"></MenuItem>
+                    <MenuItem x:Name="mi_Sof" Header="КОФ">
+                        <MenuItem x:Name="mi_ForAllCP" Header="На всё КП"></MenuItem>
+                        <MenuItem x:Name="mi_ForPositions" Header="Попозиционно"></MenuItem>
+                    </MenuItem>
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="mi_CreateInvoice" Header="Выставить счет"></MenuItem>
+                <MenuItem x:Name="mi_CreateSpecification" Header="Создать спецификацию"></MenuItem>
+                <MenuItem x:Name="mi_CreateLablesForAllPassportedPositions" Header="Сделать шильды для всех позиций с пасспортами"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mi_DownloadWord" Header="Скачать документ Word"></MenuItem>
+        </Menu>
+        
         <TabControl Grid.Row="1" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <TabItem Header="Арматура">
                 <Grid>
@@ -256,21 +287,165 @@
 
             </TabItem>
             <TabItem Header="Произвольная">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="tbx_ShortDesignation" Grid.Row="0" Margin="2">Краткое наименование (отображается в программе)</TextBox>
+                            <TextBox x:Name="tbx_FullDesignation" Grid.Row="1" Margin="2">Полное наименование (отображается в документе Word)</TextBox>
+                        </Grid>
+
+                        <DataGrid x:Name="dgr_ManualPosition" Grid.Column="1" Margin="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Цена с НДС"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Валюта"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Коэффициент"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Стоимость"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="35*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="tbl_Units" Grid.Column="0" Margin="2">Единицы измерения:</TextBlock>
+                            <ComboBox x:Name="cbx_Units" Grid.Column="1" Margin="2">Единицы измерения:</ComboBox>
+                            <TextBlock x:Name="tbl_SummOfPartsLabel" Grid.Column="2" Margin="2">Сумма составных частей (без НДС):</TextBlock>
+                            <TextBlock x:Name="tbl_PriceWithDiscountAndMarkupLabel" Grid.Column="2" Grid.Row="1" Margin="2">Стоимость со скидкой и наценкой (без НДС):</TextBlock>
+                            <TextBlock x:Name="tbl_SummOfParts" Grid.Column="3" Margin="2"></TextBlock>
+                            <TextBlock x:Name="tbl_PriceWithDiscountAndMarkup" Grid.Column="3" Grid.Row="1" Margin="2"></TextBlock>
+                        </Grid>
+
+                        <Grid x:Name="grid_ManualPositionButtons" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition ></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Button x:Name="but_EditPosition2" Grid.Row="2" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Bottom" Height="40" Width="40" >
+                                <StackPanel>
+                                    <Image Source="/Resources/edit_pos.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_Undo2" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/undo.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_OK2" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/ok.png"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="but_AddPosition2" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" Margin="2" VerticalAlignment="Bottom" Height="40" Width="40"  >
+                                <StackPanel>
+                                    <Image Source="/Resources/add.png" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Grid>                                 
+                </Grid>
             </TabItem>
         </TabControl>
         <TextBox x:Name="tbx_Definition" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Stretch"/>
-        <DataGrid x:Name="dgr_Positions" DataContext="{Binding}" AutoGenerateColumns="False" Grid.Row="3" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="№" Binding="{Binding Path=PositionNumber}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=ShortDesignation}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Amount}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Цена, руб."></DataGridTextColumn>
-                <DataGridTextColumn Header="Сумма, руб."></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="dgr_Positions" Grid.Column="0" DataContext="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Path=PositionNumber}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Path=ShortDesignation}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=Amount}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена, руб."></DataGridTextColumn>
+                    <DataGridTextColumn Header="Сумма, руб."></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button x:Name="but_UpPosition" Grid.Row="0" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" Height="30" Width="30">
+                    <StackPanel>
+                        <Image Source="/Resources/arrow_up.png" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="but_DeletePosition" Grid.Row="1" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" Height="30" Width="30">
+                    <StackPanel>
+                        <Image Source="/Resources/delete.png" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="but_DownPosition" Grid.Row="2" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" Height="30" Width="30">
+                    <StackPanel>
+                        <Image Source="/Resources/arrow_down.png" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="but_CopyPosition" Grid.Row="3" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" Height="30" Width="30">
+                    <StackPanel>
+                        <Image Source="/Resources/copy.png" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="but_PastePosition" Grid.Row="4" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" Height="30" Width="30">
+                    <StackPanel>
+                        <Image Source="/Resources/paste.png" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>        
         <Grid Grid.Row="4" Background="#FFE5E5E5">
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="2" Grid.Column="0">Сумма:</TextBlock>
+            <TextBlock x:Name="tbl_Summ" Margin="2" Grid.Column="1"></TextBlock>
+            <TextBlock Margin="2" Grid.Column="2">руб. ; с НДС:</TextBlock>
+            <TextBlock x:Name="tbl_SummWithVAT" Margin="2" Grid.Column="3"></TextBlock>
+            <TextBlock Margin="2" Grid.Column="4">руб. ; с доставкой и НДС:</TextBlock>
+            <TextBlock x:Name="tbl_SummWithDeliveryAndVAT" Margin="2" Grid.Column="5"></TextBlock>
         </Grid>
     </Grid>
 </Window>

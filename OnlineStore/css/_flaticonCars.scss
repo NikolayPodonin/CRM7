@@ -1,0 +1,199 @@
+    /*
+    FlaticonCars icon font: FlaticonCars
+    Creation date: 27/11/2017 15:51
+    */
+
+    @font-face {
+  font-family: "FlaticonCars";
+  src: url("./FlaticonCars.eot");
+  src: url("./FlaticonCars.eot?#iefix") format("embedded-opentype"),
+       url("./FlaticonCars.woff") format("woff"),
+       url("./FlaticonCars.ttf") format("truetype"),
+       url("./FlaticonCars.svg#FlaticonCars") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FlaticonCars";
+    src: url("./FlaticonCars.svg#FlaticonCars") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "FlaticonCars";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .FlaticonCars-001-windscreen-2:before { content: "\f100"; }
+.FlaticonCars-002-wiper:before { content: "\f101"; }
+.FlaticonCars-003-windscreen-1:before { content: "\f102"; }
+.FlaticonCars-004-windscreen:before { content: "\f103"; }
+.FlaticonCars-005-wheel:before { content: "\f104"; }
+.FlaticonCars-006-trunk-open:before { content: "\f105"; }
+.FlaticonCars-007-spanner:before { content: "\f106"; }
+.FlaticonCars-008-tire:before { content: "\f107"; }
+.FlaticonCars-009-break:before { content: "\f108"; }
+.FlaticonCars-010-temperature:before { content: "\f109"; }
+.FlaticonCars-011-gearshift-4:before { content: "\f10a"; }
+.FlaticonCars-012-gearshift-3:before { content: "\f10b"; }
+.FlaticonCars-013-gearshift-2:before { content: "\f10c"; }
+.FlaticonCars-014-gearshift-1:before { content: "\f10d"; }
+.FlaticonCars-015-suspension-1:before { content: "\f10e"; }
+.FlaticonCars-016-suspension:before { content: "\f10f"; }
+.FlaticonCars-017-steering-wheel-2:before { content: "\f110"; }
+.FlaticonCars-018-steering-wheel-1:before { content: "\f111"; }
+.FlaticonCars-019-steering-wheel:before { content: "\f112"; }
+.FlaticonCars-020-speedometer:before { content: "\f113"; }
+.FlaticonCars-021-rearview-mirror-1:before { content: "\f114"; }
+.FlaticonCars-022-light-1:before { content: "\f115"; }
+.FlaticonCars-023-car-repair-1:before { content: "\f116"; }
+.FlaticonCars-024-car-repair:before { content: "\f117"; }
+.FlaticonCars-025-seatbelt:before { content: "\f118"; }
+.FlaticonCars-026-climatization:before { content: "\f119"; }
+.FlaticonCars-027-piston:before { content: "\f11a"; }
+.FlaticonCars-028-pedals:before { content: "\f11b"; }
+.FlaticonCars-029-parking:before { content: "\f11c"; }
+.FlaticonCars-030-lights-2:before { content: "\f11d"; }
+.FlaticonCars-031-engine:before { content: "\f11e"; }
+.FlaticonCars-032-lights-1:before { content: "\f11f"; }
+.FlaticonCars-033-lights:before { content: "\f120"; }
+.FlaticonCars-034-light:before { content: "\f121"; }
+.FlaticonCars-035-lifter-2:before { content: "\f122"; }
+.FlaticonCars-036-lifter-1:before { content: "\f123"; }
+.FlaticonCars-037-car-3:before { content: "\f124"; }
+.FlaticonCars-038-rearview-mirror:before { content: "\f125"; }
+.FlaticonCars-039-car-2:before { content: "\f126"; }
+.FlaticonCars-040-horn-1:before { content: "\f127"; }
+.FlaticonCars-041-horn:before { content: "\f128"; }
+.FlaticonCars-042-hood-open:before { content: "\f129"; }
+.FlaticonCars-043-air-conditioner-2:before { content: "\f12a"; }
+.FlaticonCars-044-handbrake:before { content: "\f12b"; }
+.FlaticonCars-045-gears:before { content: "\f12c"; }
+.FlaticonCars-046-gearshift:before { content: "\f12d"; }
+.FlaticonCars-047-fuel:before { content: "\f12e"; }
+.FlaticonCars-048-gasoline-pump:before { content: "\f12f"; }
+.FlaticonCars-049-gasoline-1:before { content: "\f130"; }
+.FlaticonCars-050-gasoline:before { content: "\f131"; }
+.FlaticonCars-051-car-door-1:before { content: "\f132"; }
+.FlaticonCars-052-car-1:before { content: "\f133"; }
+.FlaticonCars-053-chassis:before { content: "\f134"; }
+.FlaticonCars-054-air-conditioner-1:before { content: "\f135"; }
+.FlaticonCars-055-right-arrow:before { content: "\f136"; }
+.FlaticonCars-056-left-arrow:before { content: "\f137"; }
+.FlaticonCars-057-fan:before { content: "\f138"; }
+.FlaticonCars-058-exhaust-pipe-1:before { content: "\f139"; }
+.FlaticonCars-059-exhaust-pipe:before { content: "\f13a"; }
+.FlaticonCars-060-esp:before { content: "\f13b"; }
+.FlaticonCars-061-car:before { content: "\f13c"; }
+.FlaticonCars-062-snowflake:before { content: "\f13d"; }
+.FlaticonCars-063-seat:before { content: "\f13e"; }
+.FlaticonCars-064-car-wash:before { content: "\f13f"; }
+.FlaticonCars-065-car-key-1:before { content: "\f140"; }
+.FlaticonCars-066-car-key:before { content: "\f141"; }
+.FlaticonCars-067-safety-seat-1:before { content: "\f142"; }
+.FlaticonCars-068-safety-seat:before { content: "\f143"; }
+.FlaticonCars-069-car-radio:before { content: "\f144"; }
+.FlaticonCars-070-car-painting:before { content: "\f145"; }
+.FlaticonCars-071-oil:before { content: "\f146"; }
+.FlaticonCars-072-lifter:before { content: "\f147"; }
+.FlaticonCars-073-air-conditioner:before { content: "\f148"; }
+.FlaticonCars-074-car-door:before { content: "\f149"; }
+.FlaticonCars-075-warning:before { content: "\f14a"; }
+.FlaticonCars-076-antenna:before { content: "\f14b"; }
+.FlaticonCars-077-airbag:before { content: "\f14c"; }
+.FlaticonCars-078-accumulator:before { content: "\f14d"; }
+.FlaticonCars-079-accumulator-cable:before { content: "\f14e"; }
+.FlaticonCars-080-abs:before { content: "\f14f"; }
+    
+    $font-FlaticonCars-001-windscreen-2: "\f100";
+    $font-FlaticonCars-002-wiper: "\f101";
+    $font-FlaticonCars-003-windscreen-1: "\f102";
+    $font-FlaticonCars-004-windscreen: "\f103";
+    $font-FlaticonCars-005-wheel: "\f104";
+    $font-FlaticonCars-006-trunk-open: "\f105";
+    $font-FlaticonCars-007-spanner: "\f106";
+    $font-FlaticonCars-008-tire: "\f107";
+    $font-FlaticonCars-009-break: "\f108";
+    $font-FlaticonCars-010-temperature: "\f109";
+    $font-FlaticonCars-011-gearshift-4: "\f10a";
+    $font-FlaticonCars-012-gearshift-3: "\f10b";
+    $font-FlaticonCars-013-gearshift-2: "\f10c";
+    $font-FlaticonCars-014-gearshift-1: "\f10d";
+    $font-FlaticonCars-015-suspension-1: "\f10e";
+    $font-FlaticonCars-016-suspension: "\f10f";
+    $font-FlaticonCars-017-steering-wheel-2: "\f110";
+    $font-FlaticonCars-018-steering-wheel-1: "\f111";
+    $font-FlaticonCars-019-steering-wheel: "\f112";
+    $font-FlaticonCars-020-speedometer: "\f113";
+    $font-FlaticonCars-021-rearview-mirror-1: "\f114";
+    $font-FlaticonCars-022-light-1: "\f115";
+    $font-FlaticonCars-023-car-repair-1: "\f116";
+    $font-FlaticonCars-024-car-repair: "\f117";
+    $font-FlaticonCars-025-seatbelt: "\f118";
+    $font-FlaticonCars-026-climatization: "\f119";
+    $font-FlaticonCars-027-piston: "\f11a";
+    $font-FlaticonCars-028-pedals: "\f11b";
+    $font-FlaticonCars-029-parking: "\f11c";
+    $font-FlaticonCars-030-lights-2: "\f11d";
+    $font-FlaticonCars-031-engine: "\f11e";
+    $font-FlaticonCars-032-lights-1: "\f11f";
+    $font-FlaticonCars-033-lights: "\f120";
+    $font-FlaticonCars-034-light: "\f121";
+    $font-FlaticonCars-035-lifter-2: "\f122";
+    $font-FlaticonCars-036-lifter-1: "\f123";
+    $font-FlaticonCars-037-car-3: "\f124";
+    $font-FlaticonCars-038-rearview-mirror: "\f125";
+    $font-FlaticonCars-039-car-2: "\f126";
+    $font-FlaticonCars-040-horn-1: "\f127";
+    $font-FlaticonCars-041-horn: "\f128";
+    $font-FlaticonCars-042-hood-open: "\f129";
+    $font-FlaticonCars-043-air-conditioner-2: "\f12a";
+    $font-FlaticonCars-044-handbrake: "\f12b";
+    $font-FlaticonCars-045-gears: "\f12c";
+    $font-FlaticonCars-046-gearshift: "\f12d";
+    $font-FlaticonCars-047-fuel: "\f12e";
+    $font-FlaticonCars-048-gasoline-pump: "\f12f";
+    $font-FlaticonCars-049-gasoline-1: "\f130";
+    $font-FlaticonCars-050-gasoline: "\f131";
+    $font-FlaticonCars-051-car-door-1: "\f132";
+    $font-FlaticonCars-052-car-1: "\f133";
+    $font-FlaticonCars-053-chassis: "\f134";
+    $font-FlaticonCars-054-air-conditioner-1: "\f135";
+    $font-FlaticonCars-055-right-arrow: "\f136";
+    $font-FlaticonCars-056-left-arrow: "\f137";
+    $font-FlaticonCars-057-fan: "\f138";
+    $font-FlaticonCars-058-exhaust-pipe-1: "\f139";
+    $font-FlaticonCars-059-exhaust-pipe: "\f13a";
+    $font-FlaticonCars-060-esp: "\f13b";
+    $font-FlaticonCars-061-car: "\f13c";
+    $font-FlaticonCars-062-snowflake: "\f13d";
+    $font-FlaticonCars-063-seat: "\f13e";
+    $font-FlaticonCars-064-car-wash: "\f13f";
+    $font-FlaticonCars-065-car-key-1: "\f140";
+    $font-FlaticonCars-066-car-key: "\f141";
+    $font-FlaticonCars-067-safety-seat-1: "\f142";
+    $font-FlaticonCars-068-safety-seat: "\f143";
+    $font-FlaticonCars-069-car-radio: "\f144";
+    $font-FlaticonCars-070-car-painting: "\f145";
+    $font-FlaticonCars-071-oil: "\f146";
+    $font-FlaticonCars-072-lifter: "\f147";
+    $font-FlaticonCars-073-air-conditioner: "\f148";
+    $font-FlaticonCars-074-car-door: "\f149";
+    $font-FlaticonCars-075-warning: "\f14a";
+    $font-FlaticonCars-076-antenna: "\f14b";
+    $font-FlaticonCars-077-airbag: "\f14c";
+    $font-FlaticonCars-078-accumulator: "\f14d";
+    $font-FlaticonCars-079-accumulator-cable: "\f14e";
+    $font-FlaticonCars-080-abs: "\f14f";

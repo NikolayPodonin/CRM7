@@ -27,25 +27,21 @@ namespace Client.WPF.CPForms
     /// Логика взаимодействия для WindowMainCP.xaml
     /// </summary>
     public partial class WindowMainCP : Window
-    {
+    {        
+        Proposal thisProposal;
         //вместо этого будет шлюз через WCF
         Catalog catalog;
         ValveInCatalog valveInCatalog;
 
-        public WindowMainCP()
+        private void InitializeEvents()
         {
-            InitializeComponent();
-
-            Catalogue cat = new Catalogue();
-            catalog = cat.GetAllCatalogs().First();
-
             //Здесь мы обращаемся на сервер каждый раз, чтобы получить характеристики моделей арматуры, которые отобразятся в окне.
             lbx_Manufacturer.SelectionChanged += (s, e) =>
             {
-                if(lbx_Manufacturer.SelectedItem != null)
+                if (lbx_Manufacturer.SelectedItem != null)
                 {
                     lbx_Type.Items.Clear();
-                    foreach (var valveType in cat.GetValveTypesOfManufacturerInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id))
+                    foreach (var valveType in Singleton.Catalogue.GetValveTypesOfManufacturerInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id))
                     {
                         lbx_Type.Items.Add(valveType);
                     }
@@ -54,10 +50,10 @@ namespace Client.WPF.CPForms
             };
             lbx_Type.SelectionChanged += (s, e) =>
             {
-                if(lbx_Type.SelectedItem != null)
+                if (lbx_Type.SelectedItem != null)
                 {
                     lbx_Series.Items.Clear();
-                    foreach (var series in cat.GetValveSeriesOfTypeInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id, ((ValveType)lbx_Type.SelectedItem).Id))
+                    foreach (var series in Singleton.Catalogue.GetValveSeriesOfTypeInCatalog(catalog.Id, ((Company)lbx_Manufacturer.SelectedItem).Id, ((ValveType)lbx_Type.SelectedItem).Id))
                     {
                         lbx_Series.Items.Add(series);
                     }
@@ -66,10 +62,10 @@ namespace Client.WPF.CPForms
             };
             lbx_Series.SelectionChanged += (s, e) =>
             {
-                if(lbx_Series.SelectedItem != null)
+                if (lbx_Series.SelectedItem != null)
                 {
                     lbx_Connection.Items.Clear();
-                    foreach (var connect in cat.GetValveConnectionOfSeriesInCatalog(catalog.Id,
+                    foreach (var connect in Singleton.Catalogue.GetValveConnectionOfSeriesInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id))
@@ -81,10 +77,10 @@ namespace Client.WPF.CPForms
             };
             lbx_Connection.SelectionChanged += (s, e) =>
             {
-                if(lbx_Connection.SelectedItem != null)
+                if (lbx_Connection.SelectedItem != null)
                 {
                     lbx_Environment.Items.Clear();
-                    foreach (var envir in cat.GetValveEnvironmentOfConnectionInCatalog(catalog.Id,
+                    foreach (var envir in Singleton.Catalogue.GetValveEnvironmentOfConnectionInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -97,10 +93,10 @@ namespace Client.WPF.CPForms
             };
             lbx_Environment.SelectionChanged += (s, e) =>
             {
-                if(lbx_Environment.SelectedItem != null)
+                if (lbx_Environment.SelectedItem != null)
                 {
                     lbx_MaterialBody.Items.Clear();
-                    foreach (var mb in cat.GetValveMaterialBodyOfEnvironmentInCatalog(catalog.Id,
+                    foreach (var mb in Singleton.Catalogue.GetValveMaterialBodyOfEnvironmentInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -114,10 +110,10 @@ namespace Client.WPF.CPForms
             };
             lbx_MaterialBody.SelectionChanged += (s, e) =>
             {
-                if(lbx_MaterialBody.SelectedItem != null)
+                if (lbx_MaterialBody.SelectedItem != null)
                 {
                     lbx_Consolidation.Items.Clear();
-                    foreach (var mb in cat.GetValveConsolidationOfMaterialInCatalog(catalog.Id,
+                    foreach (var mb in Singleton.Catalogue.GetValveConsolidationOfMaterialInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -129,13 +125,13 @@ namespace Client.WPF.CPForms
                     }
                     lbx_Consolidation.SelectedIndex = 0;
                 }
-            };            
+            };
             lbx_Consolidation.SelectionChanged += (s, e) =>
             {
                 if (lbx_Consolidation.SelectedItem != null)
                 {
                     lbx_Controlling.Items.Clear();
-                    foreach (var ctr in cat.GetControllingOfConsolidationInCatalog(catalog.Id,
+                    foreach (var ctr in Singleton.Catalogue.GetControllingOfConsolidationInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -152,52 +148,52 @@ namespace Client.WPF.CPForms
             // Дальше к элементам окна привязываются уже не характеристики арматуры, а сохраненные в клиенте модели арматуры, но отображаются только их характеристики.
             lbx_Controlling.SelectionChanged += (s, e) =>
             {
-                if(lbx_Controlling.SelectedItem != null)
+                if (lbx_Controlling.SelectedItem != null)
                 {
                     lbx_DN.Items.Clear();
-                    foreach (var dn in cat.GetDiametersOfControllingInCatalog(catalog.Id,
+                    foreach (var dn in Singleton.Catalogue.GetDiametersOfControllingInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
                         ((ValveConnection)lbx_Connection.SelectedItem).Id,
                         ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
                         ((Material)lbx_MaterialBody.SelectedItem).Id,
-                        ((Consolidation)lbx_Consolidation.SelectedItem).Id, 
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id,
                         (bool)lbx_Controlling.SelectedItem))
                     {
                         lbx_DN.Items.Add(dn);
                     }
                     lbx_DN.SelectedIndex = 0;
-                }                
+                }
             };
             lbx_DN.SelectionChanged += (s, e) =>
             {
-                if(lbx_DN.SelectedItem != null)
+                if (lbx_DN.SelectedItem != null)
                 {
                     lbx_PN.Items.Clear();
-                    foreach (var pn in cat.GetPNsOfDiameterInCatalog(catalog.Id,
+                    foreach (var pn in Singleton.Catalogue.GetPNsOfDiameterInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
                         ((ValveConnection)lbx_Connection.SelectedItem).Id,
                         ((CRM7.DataModel.Product.Environment)lbx_Environment.SelectedItem).Id,
                         ((Material)lbx_MaterialBody.SelectedItem).Id,
-                        ((Consolidation)lbx_Consolidation.SelectedItem).Id, 
+                        ((Consolidation)lbx_Consolidation.SelectedItem).Id,
                         (bool)lbx_Controlling.SelectedItem,
                         (string)lbx_DN.SelectedItem))
                     {
                         lbx_PN.Items.Add(pn);
                     }
                     lbx_PN.SelectedIndex = 0;
-                }                
+                }
             };
             //Отсюда начинаются другие элементы, модель арматуры мы уже выбрали.
             lbx_PN.SelectionChanged += (s, e) =>
             {
-                if(lbx_PN.SelectedItem != null)
+                if (lbx_PN.SelectedItem != null)
                 {
                     lbx_RotorType.Items.Clear();
-                    foreach (var rt in cat.GetRotorTypesOfPNInCatalog(catalog.Id,
+                    foreach (var rt in Singleton.Catalogue.GetRotorTypesOfPNInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -212,14 +208,14 @@ namespace Client.WPF.CPForms
                         lbx_RotorType.Items.Add(rt);
                     }
                     lbx_RotorType.SelectedIndex = 0;
-                }                
+                }
             };
             lbx_RotorType.SelectionChanged += (s, e) =>
             {
                 if (lbx_RotorType.SelectedItem != null)
                 {
                     lbx_Rotors.Items.Clear();
-                    valveInCatalog = cat.GetValveInCatalog(catalog.Id,
+                    valveInCatalog = Singleton.Catalogue.GetValveInCatalog(catalog.Id,
                         ((Company)lbx_Manufacturer.SelectedItem).Id,
                         ((ValveType)lbx_Type.SelectedItem).Id,
                         ((ValveSeries)lbx_Series.SelectedItem).Id,
@@ -239,7 +235,7 @@ namespace Client.WPF.CPForms
                     {
                         lbx_Rotors.IsEnabled = true;
                         chb_OtherRotor.IsEnabled = true;
-                        foreach (var rm in cat.GetRotorsForValveInCatalog(catalog.Id, valveInCatalog.Id))
+                        foreach (var rm in Singleton.Catalogue.GetRotorsForValveInCatalog(catalog.Id, valveInCatalog.Id))
                         {
                             lbx_Rotors.Items.Add(rm);
                         }
@@ -249,16 +245,16 @@ namespace Client.WPF.CPForms
                         lbx_Rotors.IsEnabled = false;
                         chb_OtherRotor.IsEnabled = false;
                     }
-                }                    
+                }
             };
             lbx_Rotors.SelectionChanged += (s, e) =>
             {
-                if(lbx_Rotors.SelectedItem != null)
+                if (lbx_Rotors.SelectedItem != null)
                     dud_RotorPrice.DataContext = (RotorInCatalog)lbx_Rotors.SelectedItem;
             };
             lbx_SOFs.SelectionChanged += (s, e) =>
             {
-                if(lbx_SOFs.SelectedItem != null)
+                if (lbx_SOFs.SelectedItem != null)
                     dud_SOFPrice.DataContext = (SofInCatalog)lbx_SOFs.SelectedItem;
             };
 
@@ -272,15 +268,15 @@ namespace Client.WPF.CPForms
             };
             chb_SOF.Checked += (s, e) =>
             {
-                if(valveInCatalog != null)
+                if (valveInCatalog != null)
                 {
                     lbx_SOFs.Items.Clear();
                     lbx_SOFs.IsEnabled = true;
-                    foreach (var sof in cat.GetSofsForValveInCatalog(catalog.Id, valveInCatalog.Id))
+                    foreach (var sof in Singleton.Catalogue.GetSofsForValveInCatalog(catalog.Id, valveInCatalog.Id))
                     {
                         lbx_SOFs.Items.Add(sof);
                     }
-                }                
+                }
             };
             chb_SOF.Unchecked += (s, e) =>
             {
@@ -291,15 +287,29 @@ namespace Client.WPF.CPForms
             but_AddPosition.Click += (s, e) =>
             {
                 ProposalPosition pos = new ProposalPosition() { Amount = 1 };
-                pos.Valve = new ValveInPosition() { BaseValue = (decimal)dud_ValvePrice.Value, ValveModel = valveInCatalog.ValveModel };
+                pos.Valve = new ValveInPosition() { BaseValue = (decimal)dud_ValvePrice.Value, ValveModel = valveInCatalog.Model };
                 dgr_Positions.Items.Add(pos);
             };
+        }
 
-            foreach (var company in cat.GetValveManufacturersInCatalog(catalog.Id))
+        public WindowMainCP()
+        {
+            InitializeComponent();
+
+            thisProposal = new Proposal();
+            
+            //нужно будет сделать либо выбор каталога в зависимости от юзера, либо возможность юзеру выбирать каталог
+            catalog = Singleton.Catalogue.GetAllCatalogs().First();
+
+            InitializeEvents();
+
+            foreach (var company in Singleton.Catalogue.GetValveManufacturersInCatalog(catalog.Id))
             {
                 lbx_Manufacturer.Items.Add(company);
             }            
         }
+
+
 
         private void but_RotorOption_Click(object sender, RoutedEventArgs e)
         {

@@ -1,0 +1,89 @@
+    /*
+    FlaticonBuilding icon font: FlaticonBuilding
+    Creation date: 01/12/2017 08:49
+    */
+
+    @font-face {
+  font-family: "FlaticonBuilding";
+  src: url("./FlaticonBuilding.eot");
+  src: url("./FlaticonBuilding.eot?#iefix") format("embedded-opentype"),
+       url("./FlaticonBuilding.woff") format("woff"),
+       url("./FlaticonBuilding.ttf") format("truetype"),
+       url("./FlaticonBuilding.svg#FlaticonBuilding") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FlaticonBuilding";
+    src: url("./FlaticonBuilding.svg#FlaticonBuilding") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "FlaticonBuilding";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .FlaticonBuilding-001-tool-box-1:before { content: "\f100"; }
+.FlaticonBuilding-002-jackhammer:before { content: "\f101"; }
+.FlaticonBuilding-003-paint-roller:before { content: "\f102"; }
+.FlaticonBuilding-004-drill-tool:before { content: "\f103"; }
+.FlaticonBuilding-005-builder:before { content: "\f104"; }
+.FlaticonBuilding-006-crane-machine:before { content: "\f105"; }
+.FlaticonBuilding-007-electric-saw:before { content: "\f106"; }
+.FlaticonBuilding-008-tile:before { content: "\f107"; }
+.FlaticonBuilding-009-tool-box:before { content: "\f108"; }
+.FlaticonBuilding-010-parquet:before { content: "\f109"; }
+.FlaticonBuilding-011-crane:before { content: "\f10a"; }
+.FlaticonBuilding-012-wall:before { content: "\f10b"; }
+.FlaticonBuilding-013-building:before { content: "\f10c"; }
+.FlaticonBuilding-014-blueprint:before { content: "\f10d"; }
+.FlaticonBuilding-015-saw:before { content: "\f10e"; }
+.FlaticonBuilding-016-plane:before { content: "\f10f"; }
+.FlaticonBuilding-017-heating:before { content: "\f110"; }
+.FlaticonBuilding-018-angle-grinder:before { content: "\f111"; }
+.FlaticonBuilding-019-concrete-mixer:before { content: "\f112"; }
+.FlaticonBuilding-020-circular-saw:before { content: "\f113"; }
+.FlaticonBuilding-021-wrench:before { content: "\f114"; }
+.FlaticonBuilding-022-board:before { content: "\f115"; }
+.FlaticonBuilding-023-roof:before { content: "\f116"; }
+.FlaticonBuilding-024-measuring-tape:before { content: "\f117"; }
+.FlaticonBuilding-025-wallpaper:before { content: "\f118"; }
+    
+    $font-FlaticonBuilding-001-tool-box-1: "\f100";
+    $font-FlaticonBuilding-002-jackhammer: "\f101";
+    $font-FlaticonBuilding-003-paint-roller: "\f102";
+    $font-FlaticonBuilding-004-drill-tool: "\f103";
+    $font-FlaticonBuilding-005-builder: "\f104";
+    $font-FlaticonBuilding-006-crane-machine: "\f105";
+    $font-FlaticonBuilding-007-electric-saw: "\f106";
+    $font-FlaticonBuilding-008-tile: "\f107";
+    $font-FlaticonBuilding-009-tool-box: "\f108";
+    $font-FlaticonBuilding-010-parquet: "\f109";
+    $font-FlaticonBuilding-011-crane: "\f10a";
+    $font-FlaticonBuilding-012-wall: "\f10b";
+    $font-FlaticonBuilding-013-building: "\f10c";
+    $font-FlaticonBuilding-014-blueprint: "\f10d";
+    $font-FlaticonBuilding-015-saw: "\f10e";
+    $font-FlaticonBuilding-016-plane: "\f10f";
+    $font-FlaticonBuilding-017-heating: "\f110";
+    $font-FlaticonBuilding-018-angle-grinder: "\f111";
+    $font-FlaticonBuilding-019-concrete-mixer: "\f112";
+    $font-FlaticonBuilding-020-circular-saw: "\f113";
+    $font-FlaticonBuilding-021-wrench: "\f114";
+    $font-FlaticonBuilding-022-board: "\f115";
+    $font-FlaticonBuilding-023-roof: "\f116";
+    $font-FlaticonBuilding-024-measuring-tape: "\f117";
+    $font-FlaticonBuilding-025-wallpaper: "\f118";

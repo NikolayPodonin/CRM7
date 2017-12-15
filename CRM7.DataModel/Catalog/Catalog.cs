@@ -1,4 +1,5 @@
 ﻿using CRM7.DataModel.Catalog.CatalogPosition;
+using CRM7.DataModel.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -63,5 +64,31 @@ namespace CRM7.DataModel.Catalog
         /// Список позиций комплектов фланцев.
         /// </summary>
         public virtual ICollection<ManualProductInCatalog> ManualProducts { get; set; }
+
+        public List<IProductModel> GetAllModels()
+        {
+            List<IProductModel> allModels = new List<IProductModel>();
+            foreach(var mod in Valves)
+            {
+                allModels.Add(mod.Model);
+            }
+            foreach (var mod in Rotors)
+            {
+                allModels.Add(mod.Model);
+            }
+            foreach (var mod in RotorOptions)
+            {
+                allModels.Add(mod.Model);
+            }
+            foreach (var mod in ManualProducts)
+            {
+                allModels.Add(mod.Model);
+            }
+            foreach (var mod in SOFs)
+            {
+                allModels.Add(mod.Model);
+            }
+            return allModels;
+        }
     }
 }

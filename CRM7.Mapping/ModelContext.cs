@@ -51,6 +51,8 @@ namespace CRM7.Mapping
         public DbSet<ValveInPosition> ValveInPositions { get; set; }
 
         public DbSet<SofInPosition> SofInPositions { get; set; }
+        
+        public DbSet<ManualProductInPosition> ManualProductInPositions { get; set; }
 
         #endregion Commercial
 
@@ -177,6 +179,8 @@ namespace CRM7.Mapping
         public DbSet<RotorOptionInCatalog> RotorOptionInCatalogs { get; set; }
 
         public DbSet<SofInCatalog> SofInCatalogs { get; set; }
+
+        public DbSet<ManualProductInCatalog> ManualProductInCatalogs { get; set; }        
 
         #endregion
 
@@ -313,11 +317,11 @@ namespace CRM7.Mapping
             modelBuilder.Entity<Catalog>().HasMany(i => i.SOFs).WithRequired(i => i.Catalog).HasForeignKey(i => i.CatalogId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Catalog>().HasMany(i => i.ManualProducts).WithRequired(i => i.Catalog).HasForeignKey(i => i.CatalogId).WillCascadeOnDelete(false);
             
-            modelBuilder.Entity<ValveInCatalog>().HasRequired(i => i.ValveModel).WithMany(i => i.ValveInCatalogs).HasForeignKey(i => i.ValveModelId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<RotorInCatalog>().HasRequired(i => i.RotorModel).WithMany(i => i.RotorInCatalogs).HasForeignKey(i => i.RotorModelId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<RotorOptionInCatalog>().HasRequired(i => i.RotorOptionModel).WithMany(i => i.RotorOptionInCatalogs).HasForeignKey(i => i.RotorOptionModelId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<SofInCatalog>().HasRequired(i => i.SofModel).WithMany(i => i.SofInCatalogs).HasForeignKey(i => i.SofModelId).WillCascadeOnDelete(false);
-            modelBuilder.Entity<ManualProductInCatalog>().HasRequired(i => i.ManualProductModel).WithMany(i => i.ManualProductInCatalogs).HasForeignKey(i => i.ManualProductModelId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<ValveInCatalog>().HasRequired(i => i.Model).WithMany(i => i.ValveInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<RotorInCatalog>().HasRequired(i => i.Model).WithMany(i => i.RotorInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<RotorOptionInCatalog>().HasRequired(i => i.Model).WithMany(i => i.RotorOptionInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<SofInCatalog>().HasRequired(i => i.Model).WithMany(i => i.SofInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<ManualProductInCatalog>().HasRequired(i => i.Model).WithMany(i => i.ManualProductInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
             
         }
     }
