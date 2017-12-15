@@ -93,7 +93,7 @@ namespace CRM7.Service
                     return rotorInCatalog;
                 }
                 rotorInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                rotorInCatalog.Model = context.RotorModels.Find(rotorModelId);
+                rotorInCatalog.RotorModel = context.RotorModels.Find(rotorModelId);
                 rotorInCatalog = context.RotorInCatalogs.Add(rotorInCatalog);
                 context.SaveChanges();
                 return rotorInCatalog;
@@ -123,7 +123,7 @@ namespace CRM7.Service
                     return sofInCatalog;
                 }
                 sofInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                sofInCatalog.Model = context.SofModels.Find(sofModelId);
+                sofInCatalog.SofModel = context.SofModels.Find(sofModelId);
                 sofInCatalog = context.SofInCatalogs.Add(sofInCatalog);
                 context.SaveChanges();
                 return sofInCatalog;
@@ -578,7 +578,7 @@ namespace CRM7.Service
                 {
                     foreach (var sofm in sms)
                     {
-                        if (sic.ModelId == sofm.Id)
+                        if (sic.SofModelId == sofm.Id)
                         {
                             result.Add(sic);
                         }

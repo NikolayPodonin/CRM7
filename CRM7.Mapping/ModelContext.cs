@@ -51,8 +51,6 @@ namespace CRM7.Mapping
         public DbSet<ValveInPosition> ValveInPositions { get; set; }
 
         public DbSet<SofInPosition> SofInPositions { get; set; }
-        
-        public DbSet<ManualProductInPosition> ManualProductInPositions { get; set; }
 
         #endregion Commercial
 
@@ -179,8 +177,6 @@ namespace CRM7.Mapping
         public DbSet<RotorOptionInCatalog> RotorOptionInCatalogs { get; set; }
 
         public DbSet<SofInCatalog> SofInCatalogs { get; set; }
-
-        public DbSet<ManualProductInCatalog> ManualProductInCatalogs { get; set; }        
 
         #endregion
 

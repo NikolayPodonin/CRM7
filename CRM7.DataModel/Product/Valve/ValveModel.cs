@@ -245,7 +245,14 @@ namespace CRM7.DataModel.Product.Valve
         /// <summary>
         /// Короткое описание.
         /// </summary>
-        public string ShortDesignation { get; set; }
+        public string ShortDesignation
+        {
+            get
+            {
+                return Series.Name + ", DN " + DN + ", PN " + PN + ", " + Consolidation.Name + ", ";
+            }
+            private set { }
+        }
 
         /// <summary>
         /// Полное описание.

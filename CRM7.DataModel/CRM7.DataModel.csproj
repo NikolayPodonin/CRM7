@@ -78,6 +78,7 @@
     <Compile Include="Management\Facility.cs" />
     <Compile Include="Management\Post.cs" />
     <Compile Include="Management\User.cs" />
+    <Compile Include="OnlineStore\ProductCategory.cs" />
     <Compile Include="Organizer\DayReport.cs" />
     <Compile Include="Organizer\Task.cs" />
     <Compile Include="Organizer\TaskComment.cs" />
@@ -141,9 +142,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OnlineStore\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
