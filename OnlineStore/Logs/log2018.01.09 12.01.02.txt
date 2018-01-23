@@ -1,0 +1,1 @@
+[12.01.02]An exception occurred while initializing the database. See the InnerException for details.

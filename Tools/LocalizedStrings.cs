@@ -71,6 +71,16 @@ namespace CRM7.Tools
         #region Models and properties
 
         /// <summary>
+        /// Категория продукции.
+        /// </summary>
+        public static readonly string ProductCategory = "Категория продукции";
+
+        /// <summary>
+        /// Категории продукции.
+        /// </summary>
+        public static readonly string ProductCategories = "Категории продукции";
+
+        /// <summary>
         /// Модель.
         /// </summary>
         public static readonly string Model = "Модель";

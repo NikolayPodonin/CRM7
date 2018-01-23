@@ -1,4 +1,5 @@
 ﻿using CRM7.DataModel.Management;
+using CRM7.DataModel.OnlineStore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,5 +47,10 @@ namespace CRM7.DataModel.Product
         /// Единица измерения.
         /// </summary>
         string Unit { get; set; }
+
+        /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        ProductCategory Category { get; set; }
     }
 }

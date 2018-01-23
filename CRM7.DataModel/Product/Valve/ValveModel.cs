@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CRM7.DataModel.Management;
 using CRM7.DataModel.Catalog.CatalogPosition;
+using CRM7.DataModel.OnlineStore;
 
 namespace CRM7.DataModel.Product.Valve
 {
@@ -245,13 +246,14 @@ namespace CRM7.DataModel.Product.Valve
         /// <summary>
         /// Короткое описание.
         /// </summary>
+        [NotMapped]
         public string ShortDesignation
         {
             get
             {
                 return Series.Name + ", DN " + DN + ", PN " + PN + ", " + Consolidation.Name + ", ";
             }
-            private set { }
+            set { }
         }
 
         /// <summary>
@@ -263,6 +265,13 @@ namespace CRM7.DataModel.Product.Valve
         /// Единица измерения.
         /// </summary>
         public string Unit { get; set; }
+
+        public Guid CategoryId { get; set; }
+
+        /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        public virtual ProductCategory Category { get; set; }
 
         /// <summary>
         /// Список приводов, которые подходят для этой арматуры.

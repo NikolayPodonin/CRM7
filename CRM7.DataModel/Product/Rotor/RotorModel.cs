@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CRM7.DataModel.Product.Valve;
 using CRM7.DataModel.Management;
 using CRM7.DataModel.Catalog.CatalogPosition;
+using CRM7.DataModel.OnlineStore;
 
 namespace CRM7.DataModel.Product.Rotor
 {
@@ -80,6 +81,13 @@ namespace CRM7.DataModel.Product.Rotor
         /// Единица измерения.
         /// </summary>
         public string Unit { get; set; }
+
+        public Guid CategoryId { get; set; }
+
+        /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        public virtual ProductCategory Category { get; set; }
 
         /// <summary>
         /// Список опций, которые подходят для данного привода.

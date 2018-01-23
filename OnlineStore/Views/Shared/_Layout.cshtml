@@ -1,4 +1,4 @@
-﻿@model List<OnlineStore.Models.ProductCategory>
+﻿@model List<CRM7.DataModel.OnlineStore.ProductCategory>
 
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
                     <div class="icon-list">
                         @foreach (var pc in Model)
                         {
-                            <a href="@Url.Action(pc.Name, "Home")"><i class="fa fa-fw @pc.IconCssProperty"></i><span>@pc.Name</span></a>
+                            <a href="@Url.Action("Products", "Home")"><i class="fa fa-fw @pc.IconCssProperty"></i><span>@pc.Name</span></a>
                         }
                         <a href="mobiles.html"><i class="fa fa-fw FlaticonBuilding-023-roof"></i><span>Mobiles</span></a>
                         <a href="electronics-appliances.html"><i class="fa fa-fw fa-arrow-right"></i><span>Electronics and appliances</span></a>

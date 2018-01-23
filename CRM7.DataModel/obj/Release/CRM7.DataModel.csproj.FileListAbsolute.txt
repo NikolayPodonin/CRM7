@@ -21,3 +21,4 @@ C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataM
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.csproj.CoreCompileInputs.cache
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.dll
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.pdb
+C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Release\CRM7.DataModel.csprojResolveAssemblyReference.cache

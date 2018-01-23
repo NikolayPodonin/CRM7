@@ -1,4 +1,6 @@
-﻿using OnlineStore.Models;
+﻿using CRM7.DataModel.OnlineStore;
+using CRM7.DataModel.Product;
+using CRM7.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,39 +14,33 @@ namespace OnlineStore.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            List<ProductCategory> categories = new List<ProductCategory>()
-            {
-                new ProductCategory() { UserId = Guid.NewGuid(), Name = "Cars", IconCssProperty = "fa-car" },
-                new ProductCategory() { UserId = Guid.NewGuid(), Name = "Bikes", IconCssProperty = "FlaticonCars-005-wheel" }
-            };
+            Catalogue catalogue = new Catalogue();
+            var cat = catalogue.GetAllCatalogs().First();
+            List<ProductCategory> categories = catalogue.GetProductCategoriesFromCatalog(cat.Id);
             return View(categories);
         }
-
-        public ActionResult Typography()
+        
+        public ActionResult Products(ProductCategory category)
         {
-            return View();
-        }
-
-        public ActionResult AllClassifieds()
-        {
-            return View();
+            Catalogue catalogue = new Catalogue();
+            var cat = catalogue.GetAllCatalogs().First();
+            List<IProductModel> categories = cat.GetAllModels().FindAll(i => i.Category.Id == category.Id);
+            return View(categories);
         }
 
         public ActionResult Bikes()
         {
-            return View();
+            Catalogue catalogue = new Catalogue();
+            var cat = catalogue.GetAllCatalogs().First();
+            List<ProductCategory> categories = catalogue.GetProductCategoriesFromCatalog(cat.Id);
+            return View(categories);
         }
 
         public ActionResult BooksSportsHobbies()
         {
             return View();
         }
-
-        public ActionResult Cars()
-        {
-            return View();
-        }
-
+        
 
     }
 }

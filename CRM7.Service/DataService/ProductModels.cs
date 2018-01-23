@@ -1,4 +1,5 @@
-﻿using CRM7.DataModel.Product;
+﻿using CRM7.DataModel.OnlineStore;
+using CRM7.DataModel.Product;
 using CRM7.DataModel.Product.Rotor;
 using CRM7.DataModel.Product.SOF;
 using CRM7.DataModel.Product.Valve;
@@ -16,6 +17,32 @@ namespace CRM7.Service
     public class ProductModels
     {
         #region Add statement
+
+        /// <summary>
+        /// Добавить категорию продукции.
+        /// </summary>
+        /// <param name="category">Категория продукции.</param>
+        /// <returns></returns>
+        public ProductCategory AddProductCategory(ProductCategory category)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+
+                if (context.ProductCategories.Where(i => i.Id == category.Id).Count() > 0)
+                {
+                    return category;
+                }
+                category = context.ProductCategories.Add(category);
+                context.SaveChanges();
+                return category;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ProductCategory + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
 
         /// <summary>
         /// Добавить серию арматуры.
@@ -39,7 +66,7 @@ namespace CRM7.Service
             catch (Exception e)
             {
                 Diagnostic.WriteMessage(e.Message);
-                throw new Exception(LocalizedStrings.Catalog + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
+                throw new Exception(LocalizedStrings.ValveSeries + LocalizedStrings.CantAddSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
 
@@ -202,11 +229,14 @@ namespace CRM7.Service
         /// <param name="consolidationId">Id типа уплотнения.</param>
         /// <param name="environmentId">Id среды.</param>
         /// <param name="valveTypeId">Id типа арматуры.</param>
+        /// <param name="valveSeriesId">Серия арматуры.</param>
         /// <param name="valveConnectionId">Id типа присоединения.</param>
         /// <param name="bodyMaterialId">Id материала корпуса.</param>
         /// <param name="manufacturerId">Id компании-изготовителя.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
+        /// 
         /// <returns></returns>
-        public ValveModel AddValveModel(ValveModel model, Guid consolidationId, Guid environmentId, Guid valveTypeId, Guid valveSeriesId, Guid valveConnectionId, Guid bodyMaterialId, Guid manufacturerId)
+        public ValveModel AddValveModel(ValveModel model, Guid consolidationId, Guid environmentId, Guid valveTypeId, Guid valveSeriesId, Guid valveConnectionId, Guid bodyMaterialId, Guid manufacturerId, Guid categoryId)
         {
             try
             {
@@ -222,6 +252,7 @@ namespace CRM7.Service
                 model.Connection = context.ValveConnections.Find(valveConnectionId);
                 model.BodyMaterial = context.Materials.Find(bodyMaterialId);
                 model.Manufacturer = context.Companies.Find(manufacturerId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.ValveModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -263,8 +294,10 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель ручного редуктора.</param>
         /// <param name="manufacturerId">Id компании-изготовителя.</param>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public ManualGearModel AddManualGearModel(ManualGearModel model, Guid manufacturerId, Guid rotorTypeId)
+        public ManualGearModel AddManualGearModel(ManualGearModel model, Guid manufacturerId, Guid rotorTypeId, Guid categoryId)
         {
             try
             {
@@ -275,6 +308,7 @@ namespace CRM7.Service
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
                 model.Type = context.RotorTypes.Find(rotorTypeId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.ManualGearModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -291,8 +325,10 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель электропривода.</param>
         /// <param name="manufacturerId">Id компании-производителя.</param>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public ElectricActuatorModel AddElectricActuatorModel(ElectricActuatorModel model, Guid manufacturerId, Guid rotorTypeId)
+        public ElectricActuatorModel AddElectricActuatorModel(ElectricActuatorModel model, Guid manufacturerId, Guid rotorTypeId, Guid categoryId)
         {
             try
             {
@@ -303,6 +339,7 @@ namespace CRM7.Service
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
                 model.Type = context.RotorTypes.Find(rotorTypeId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.ElectricActuatorModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -319,8 +356,10 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель пневмопривода.</param>
         /// <param name="manufacturerId">Id компании-изготовителя.</param>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public PneumaticActuatorModel AddPneumaticActuatorModel(PneumaticActuatorModel model, Guid manufacturerId, Guid rotorTypeId)
+        public PneumaticActuatorModel AddPneumaticActuatorModel(PneumaticActuatorModel model, Guid manufacturerId, Guid rotorTypeId, Guid categoryId)
         {
             try
             {
@@ -331,6 +370,7 @@ namespace CRM7.Service
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
                 model.Type = context.RotorTypes.Find(rotorTypeId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.PneumaticActuatorModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -347,8 +387,9 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель опции электропривода.</param>
         /// <param name="manufacturerId">Id компании изготовителя.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public EAOptionModel AddEAOptionModel(EAOptionModel model, Guid manufacturerId)
+        public EAOptionModel AddEAOptionModel(EAOptionModel model, Guid manufacturerId, Guid categoryId)
         {
             try
             {
@@ -358,6 +399,7 @@ namespace CRM7.Service
                     return model;
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.EAOptionModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -374,8 +416,9 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель опции пневмопривода.</param>
         /// <param name="manufacturerId">Id компании-изготовителя.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public PAOptionModel AddPAOptionModel(PAOptionModel model, Guid manufacturerId)
+        public PAOptionModel AddPAOptionModel(PAOptionModel model, Guid manufacturerId, Guid categoryId)
         {
             try
             {
@@ -385,6 +428,7 @@ namespace CRM7.Service
                     return model;
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.PAOptionModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -401,8 +445,9 @@ namespace CRM7.Service
         /// </summary>
         /// <param name="model">Модель фланцев.</param>
         /// <param name="manufacturerId">Id компании-изготовителя.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public SofModel AddSofModel(SofModel model, Guid manufacturerId)
+        public SofModel AddSofModel(SofModel model, Guid manufacturerId, Guid categoryId)
         {
             try
             {
@@ -412,6 +457,7 @@ namespace CRM7.Service
                     return model;
                 }
                 model.Manufacturer = context.Companies.Single(c => c.Id == manufacturerId);
+                model.Category = context.ProductCategories.Find(categoryId);
                 model = context.SofModels.Add(model);
                 context.SaveChanges();
                 return model;
@@ -485,16 +531,36 @@ namespace CRM7.Service
         #region Get single statment
 
         /// <summary>
-        /// Получить тип уплотнения по Id.
+        /// Получить категорию продукта по Id.
         /// </summary>
-        /// <param name="typeId">Id типа уплотнения.</param>
+        /// <param name="categoryId">Id категории продукта.</param>
         /// <returns></returns>
-        public Consolidation GetConsolidation(Guid typeId)
+        public ProductCategory GetProductCategory(Guid categoryId)
         {
             try
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
-                Consolidation consolidation = context.Consolidations.Find(typeId);
+                ProductCategory category = context.ProductCategories.Find(categoryId);
+                return category;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ProductCategory + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить тип уплотнения по Id.
+        /// </summary>
+        /// <param name="consolidId">Id типа уплотнения.</param>
+        /// <returns></returns>
+        public Consolidation GetConsolidation(Guid consolidId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                Consolidation consolidation = context.Consolidations.Find(consolidId);
                 return consolidation;
             }
             catch (Exception e)
@@ -503,18 +569,18 @@ namespace CRM7.Service
                 throw new Exception(LocalizedStrings.Consolidation + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
-        
+
         /// <summary>
         /// Получить тип рабочей среды.
         /// </summary>
-        /// <param name="typeId">Id типа рабочей среды.</param>
+        /// <param name="envirId">Id типа рабочей среды.</param>
         /// <returns></returns>
-        public DataModel.Product.Environment GetEnvironment(Guid typeId)
+        public DataModel.Product.Environment GetEnvironment(Guid envirId)
         {
             try
             {
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
-                DataModel.Product.Environment environment = context.Environments.Find(typeId);
+                DataModel.Product.Environment environment = context.Environments.Find(envirId);
                 return environment;
             }
             catch (Exception e)
@@ -621,6 +687,26 @@ namespace CRM7.Service
             {
                 Diagnostic.WriteMessage(e.Message);
                 throw new Exception(LocalizedStrings.ValveModel + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить тип ротора.
+        /// </summary>
+        /// <param name="rotorTypeId">Id типа ротора.</param>
+        /// <returns></returns>
+        public RotorType GetRotorType(Guid rotorTypeId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                RotorType RotorType = context.RotorTypes.Find(rotorTypeId);
+                return RotorType;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.Consolidation + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
 
@@ -747,7 +833,25 @@ namespace CRM7.Service
         #endregion
 
         #region Get many statement
-        
+
+        /// <summary>
+        /// Получить все типы уплотнения.
+        /// </summary>
+        /// <returns></returns>
+        public List<ProductCategory> GetAllProductCategories()
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                return context.ProductCategories.ToList();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ProductCategories + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
         /// <summary>
         /// Получить все типы уплотнения.
         /// </summary>
@@ -875,6 +979,24 @@ namespace CRM7.Service
         }
 
         /// <summary>
+        /// Получить все типы роторов.
+        /// </summary>
+        /// <returns></returns>
+        public List<RotorType> GetAllRotorTypes()
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                return context.RotorTypes.ToList();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorTypes + LocalizedStrings.CantGetSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
         /// Получить все модели ручных редукторов.
         /// </summary>
         /// <returns></returns>
@@ -989,10 +1111,36 @@ namespace CRM7.Service
         #region Update statement
 
         /// <summary>
+        /// Изменить существующую категорию продукта.
+        /// </summary>
+        /// <param name="productCategory">Существующая категория продукта.</param>
+        /// <returns>Категория продукта.</returns>
+        public ProductCategory UpdateProductCategory(ProductCategory productCategory)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                ProductCategory category = context.ProductCategories.Find(productCategory.Id);
+                if (category == null)
+                {
+                    throw new ArgumentNullException(nameof(ProductCategory), LocalizedStrings.ProductCategory + LocalizedStrings.NotExistsSmth);
+                }
+                category = category.CloneFrom(productCategory);
+                context.SaveChanges();
+                return category;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ProductCategory + LocalizedStrings.CantUpdateSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
         /// Изменить существующий тип уплотнения.
         /// </summary>
         /// <param name="consolidation">Существующий тип уплотнения.</param>
-        /// <returns>Id типа уплотнения.</returns>
+        /// <returns>Тип уплотнения.</returns>
         public Consolidation UpdateConsolidation(Consolidation consolidation)
         {
             try
@@ -1172,6 +1320,32 @@ namespace CRM7.Service
         }
 
         /// <summary>
+        /// Изменить тип ротора.
+        /// </summary>
+        /// <param name="rotorType">Тип ротора.</param>
+        /// <returns></returns>
+        public RotorType UpdateRotorType(RotorType rotorType)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                RotorType vt = context.RotorTypes.Find(rotorType.Id);
+                if (vt == null)
+                {
+                    throw new ArgumentNullException(nameof(rotorType), LocalizedStrings.RotorType + LocalizedStrings.NotExistsSmth);
+                }
+                vt = vt.CloneFrom(rotorType);
+                context.SaveChanges();
+                return vt;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorType + LocalizedStrings.CantUpdateSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
         /// Изменить модель ручного редуктора.
         /// </summary>
         /// <param name="model">Модель ручного редуктора.</param>
@@ -1331,7 +1505,32 @@ namespace CRM7.Service
         #endregion
 
         #region Delete statement
-                
+
+        /// <summary>
+        /// Удалить категорию продукции.
+        /// </summary>
+        /// <param name="id">Id категории продукции.</param>
+        /// <returns></returns>
+        public void DeleteProductCategory(Guid id)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+
+                ProductCategory tempProductCategory = context.ProductCategories.Find(id);
+                if (tempProductCategory == null)
+                {
+                    throw new ArgumentNullException(nameof(ProductCategory), LocalizedStrings.ProductCategory + LocalizedStrings.CantDeleteSmth);
+                }
+                context.ProductCategories.Remove(tempProductCategory);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.ProductCategory + LocalizedStrings.CantDeleteSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
 
         /// <summary>
         /// Удалить тип уплотнения.
@@ -1512,6 +1711,32 @@ namespace CRM7.Service
             {
                 Diagnostic.WriteMessage(e.Message);
                 throw new Exception(LocalizedStrings.ValveModel + LocalizedStrings.CantDeleteSmth + ", " + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Удалить тип ротора.
+        /// </summary>
+        /// <param name="id">Id типa ротора.</param>
+        /// <returns></returns>
+        public void DeleteRotorType(Guid id)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+
+                RotorType tempRotorType = context.RotorTypes.Find(id);
+                if (tempRotorType == null)
+                {
+                    throw new ArgumentNullException(nameof(RotorType), LocalizedStrings.RotorType + LocalizedStrings.CantDeleteSmth);
+                }
+                context.RotorTypes.Remove(tempRotorType);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.RotorType + LocalizedStrings.CantDeleteSmth + ", " + LocalizedStrings.SeeInnerException, e);
             }
         }
 

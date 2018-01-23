@@ -1,5 +1,6 @@
 ﻿using CRM7.DataModel.Catalog.CatalogPosition;
 using CRM7.DataModel.Management;
+using CRM7.DataModel.OnlineStore;
 using CRM7.DataModel.Product.Valve;
 using System;
 using System.Collections.Generic;
@@ -82,7 +83,14 @@ namespace CRM7.DataModel.Product.SOF
         /// Наименование.
         /// </summary>
         public string Name { get; set; }
-        
+
+        public Guid CategoryId { get; set; }
+
+        /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        public virtual ProductCategory Category { get; set; }
+
         /// <summary>
         /// Метод, присваивающий полям объекта значения полей принимаемого объекта. 
         /// Касается только полей, не участвующих в связях модели данных.

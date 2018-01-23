@@ -1,4 +1,5 @@
-﻿using CRM7.DataModel.Product;
+﻿using CRM7.DataModel.Files;
+using CRM7.DataModel.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace CRM7.DataModel.Catalog.CatalogPosition
 {
-    interface ICatalogPosition : IPriceable
+    public interface ICatalogPosition : IPriceable
     {
-        
+        Guid? ImageId { get; set; }
+
+        File Image { get; set; }
     }
 }

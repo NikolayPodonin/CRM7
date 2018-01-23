@@ -1,6 +1,7 @@
 ﻿using CRM7.DataModel.Catalog;
 using CRM7.DataModel.Catalog.CatalogPosition;
 using CRM7.DataModel.Management;
+using CRM7.DataModel.OnlineStore;
 using CRM7.DataModel.Product;
 using CRM7.DataModel.Product.Rotor;
 using CRM7.DataModel.Product.SOF;
@@ -93,7 +94,7 @@ namespace CRM7.Service
                     return rotorInCatalog;
                 }
                 rotorInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                rotorInCatalog.RotorModel = context.RotorModels.Find(rotorModelId);
+                rotorInCatalog.Model = context.RotorModels.Find(rotorModelId);
                 rotorInCatalog = context.RotorInCatalogs.Add(rotorInCatalog);
                 context.SaveChanges();
                 return rotorInCatalog;
@@ -123,7 +124,7 @@ namespace CRM7.Service
                     return sofInCatalog;
                 }
                 sofInCatalog.Catalog = context.Catalogs.Find(catalogId);
-                sofInCatalog.SofModel = context.SofModels.Find(sofModelId);
+                sofInCatalog.Model = context.SofModels.Find(sofModelId);
                 sofInCatalog = context.SofInCatalogs.Add(sofInCatalog);
                 context.SaveChanges();
                 return sofInCatalog;
@@ -146,6 +147,26 @@ namespace CRM7.Service
                 ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
                 List<Catalog> tempCatalogs = context.Catalogs.ToList();
                 return tempCatalogs;
+            }
+            catch (Exception e)
+            {
+                Diagnostic.WriteMessage(e.Message);
+                throw new Exception(LocalizedStrings.Catalogs + LocalizedStrings.CantGetSmth + LocalizedStrings.SeeInnerException, e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все категории продукции из каталога.
+        /// </summary>
+        /// <param name="catalogId">Id каталога.</param>
+        /// <returns></returns>
+        public List<ProductCategory> GetProductCategoriesFromCatalog(Guid catalogId)
+        {
+            try
+            {
+                ModelContext context = new ModelContext(LocalizedStrings.DatabaseName);
+                List<ProductCategory> tempCategories = context.Catalogs.Find(catalogId).GetAllModels().Select(i => i.Category).Distinct().ToList();
+                return tempCategories;
             }
             catch (Exception e)
             {
@@ -544,7 +565,7 @@ namespace CRM7.Service
                 {
                     foreach(var rotm in rms)
                     {
-                        if(ric.RotorModelId == rotm.Id)
+                        if(ric.ModelId == rotm.Id)
                         {
                             result.Add(ric); 
                         }
@@ -578,7 +599,7 @@ namespace CRM7.Service
                 {
                     foreach (var sofm in sms)
                     {
-                        if (sic.SofModelId == sofm.Id)
+                        if (sic.ModelId == sofm.Id)
                         {
                             result.Add(sic);
                         }

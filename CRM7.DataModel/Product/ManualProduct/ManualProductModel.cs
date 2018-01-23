@@ -1,5 +1,6 @@
 ﻿using CRM7.DataModel.Catalog.CatalogPosition;
 using CRM7.DataModel.Management;
+using CRM7.DataModel.OnlineStore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,10 +25,12 @@ namespace CRM7.DataModel.Product
         [Key]
         public Guid Id { get; set; }
 
+        public Guid ManufacturerId { get; set; }
+
         /// <summary>
         /// Производитель.
         /// </summary>
-        public Company Manufacturer { get; set; }
+        public virtual Company Manufacturer { get; set; }
 
         /// <summary>
         /// Длина, мм.
@@ -58,7 +61,14 @@ namespace CRM7.DataModel.Product
         /// Единица измерения.
         /// </summary>
         public string Unit { get; set; }
-        
+
+        public Guid CategoryId { get; set; }
+
+        /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        public virtual ProductCategory Category { get; set; }
+
         /// <summary>
         /// Позиции модели арматуры в каталогах.
         /// </summary>

@@ -23,5 +23,3 @@ C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Debug\CRM7.DataMod
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Debug\CRM7.DataModel.csproj.CoreCompileInputs.cache
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Debug\CRM7.DataModel.dll
 C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\obj\Debug\CRM7.DataModel.pdb
-C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Debug\CRM7.DataModel.dll.CodeAnalysisLog.xml
-C:\Users\Николай\Documents\hub\CRM7\CRM7.DataModel\bin\Debug\CRM7.DataModel.dll.lastcodeanalysissucceeded

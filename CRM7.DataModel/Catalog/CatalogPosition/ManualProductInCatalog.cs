@@ -1,4 +1,5 @@
-﻿using CRM7.DataModel.Product;
+﻿using CRM7.DataModel.Files;
+using CRM7.DataModel.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,7 +37,13 @@ namespace CRM7.DataModel.Catalog.CatalogPosition
         /// Каталог, где содержится данная позиция.
         /// </summary>
         public virtual Catalog Catalog { get; set; }
-        
+
+        public Guid? ImageId { get; set; }
+
+        /// <summary>
+        /// Изображение.
+        /// </summary>
+        public virtual File Image {get;set;}
 
         #region IPriceable
 

@@ -15,6 +15,7 @@ using CRM7.DataModel.Passport;
 using CRM7.DataModel.Organizer;
 using CRM7.DataModel.Catalog;
 using CRM7.DataModel.Catalog.CatalogPosition;
+using CRM7.DataModel.OnlineStore;
 
 namespace CRM7.Mapping
 {
@@ -29,6 +30,8 @@ namespace CRM7.Mapping
         }
 
         #region Model
+
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         #region Commercial
 
@@ -53,7 +56,7 @@ namespace CRM7.Mapping
         public DbSet<SofInPosition> SofInPositions { get; set; }
 
         #endregion Commercial
-
+                
         #region Product
 
         public DbSet<Consolidation> Consolidations { get; set; }
@@ -282,14 +285,20 @@ namespace CRM7.Mapping
             modelBuilder.Entity<ValveModel>().HasOptional(i => i.InsideConsolidationMaterial).WithMany().HasForeignKey(i => i.InsideConsolidationMaterialId).WillCascadeOnDelete(false);
             modelBuilder.Entity<ValveModel>().HasOptional(i => i.RodConsolidationMaterial).WithMany().HasForeignKey(i => i.RodConsolidationMaterialId).WillCascadeOnDelete(false);
             modelBuilder.Entity<ValveModel>().HasOptional(i => i.RodMaterial).WithMany().HasForeignKey(i => i.RodMaterialId).WillCascadeOnDelete(false);
-            
+            modelBuilder.Entity<ValveModel>().HasRequired(i => i.Category).WithMany().HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RotorModel>().HasRequired(i => i.Manufacturer).WithMany().HasForeignKey(i => i.ManufacturerId).WillCascadeOnDelete(false);
             modelBuilder.Entity<RotorModel>().HasRequired(i => i.Type).WithMany().HasForeignKey(i => i.TypeId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<RotorModel>().HasRequired(i => i.Category).WithMany().HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RotorOptionModel>().HasRequired(i => i.Manufacturer).WithMany().HasForeignKey(i => i.ManufacturerId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<RotorOptionModel>().HasRequired(i => i.Category).WithMany().HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SofModel>().HasRequired(i => i.Manufacturer).WithMany().HasForeignKey(i => i.ManufacturerId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<SofModel>().HasRequired(i => i.Category).WithMany().HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ManualProductModel>().HasRequired(i => i.Manufacturer).WithMany().HasForeignKey(i => i.ManufacturerId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<ManualProductModel>().HasRequired(i => i.Category).WithMany().HasForeignKey(i => i.CategoryId).WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Facility>().HasOptional(i => i.ParentObject).WithMany(i => i.Facilities).HasForeignKey(i => i.ParentObjectId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Company>().HasRequired(i => i.Supervisor).WithMany(i => i.SupervisedCompanies).HasForeignKey(i => i.SupervisorId).WillCascadeOnDelete(false);
@@ -305,8 +314,7 @@ namespace CRM7.Mapping
             modelBuilder.Entity<Task>().HasMany(i => i.ChildTasks).WithOptional(i => i.ParentTask).HasForeignKey(i => i.ParentTaskId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Task>().HasMany(i => i.Reminders).WithRequired(i => i.Task).HasForeignKey(i => i.TaskId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Task>().HasMany(i => i.Comments).WithRequired(i => i.Task).HasForeignKey(i => i.TaskId).WillCascadeOnDelete(false);
-
-
+            
             modelBuilder.Entity<Catalog>().HasMany(i => i.Valves).WithRequired(i => i.Catalog).HasForeignKey(i => i.CatalogId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Catalog>().HasMany(i => i.Rotors).WithRequired(i => i.Catalog).HasForeignKey(i => i.CatalogId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Catalog>().HasMany(i => i.RotorOptions).WithRequired(i => i.Catalog).HasForeignKey(i => i.CatalogId).WillCascadeOnDelete(false);
@@ -318,7 +326,7 @@ namespace CRM7.Mapping
             modelBuilder.Entity<RotorOptionInCatalog>().HasRequired(i => i.Model).WithMany(i => i.RotorOptionInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
             modelBuilder.Entity<SofInCatalog>().HasRequired(i => i.Model).WithMany(i => i.SofInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
             modelBuilder.Entity<ManualProductInCatalog>().HasRequired(i => i.Model).WithMany(i => i.ManualProductInCatalogs).HasForeignKey(i => i.ModelId).WillCascadeOnDelete(false);
-            
+           
         }
     }
 }
